@@ -1,0 +1,8 @@
+CAPI=1
+[fileset src_files]
+files = data/Nexys4DDR_Master.xdc
+file_type = xdc
+
+[verilog]
+src_files =
+ rtl/verilog/top.v

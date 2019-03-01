@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites name="results">
+  <testsuite name="all" package="all" tests="0">
+    <property name="random_seed" value="1551456710" />
+    <testcase classname="mux_8_test" name="run_test_001" ratio_time="482641487987124.94" sim_time_ns="1001000000000.0" time="0.002074003219604492" />
+    <testcase classname="mux_8_test" name="run_test_002" ratio_time="2719234652849741.0" sim_time_ns="1001000000000.0" time="0.0003681182861328125" />
+    <testcase classname="mux_8_test" name="run_test_003" ratio_time="2797134113257828.0" sim_time_ns="1001000000000.0" time="0.0003578662872314453" />
+    <testcase classname="mux_8_test" name="run_test_004" ratio_time="2834907700202566.0" sim_time_ns="1001000000000.0" time="0.00035309791564941406" />
+    <testcase classname="mux_8_test" name="run_test_005" ratio_time="2836823178378378.5" sim_time_ns="1001000000000.0" time="0.0003528594970703125" />
+    <testcase classname="mux_8_test" name="run_test_006" ratio_time="2819676496977837.5" sim_time_ns="1001000000000.0" time="0.00035500526428222656" />
+    <testcase classname="mux_8_test" name="run_test_007" ratio_time="2829176754716981.0" sim_time_ns="1001000000000.0" time="0.00035381317138671875" />
+    <testcase classname="mux_8_test" name="run_test_008" ratio_time="2572609254901961.0" sim_time_ns="1001000000000.0" time="0.00038909912109375" />
+    <testcase classname="mux_8_test" name="run_test_009" ratio_time="2435323842227378.0" sim_time_ns="1001000000000.0" time="0.00041103363037109375" />
+    <testcase classname="mux_8_test" name="run_test_010" ratio_time="2560059941463414.5" sim_time_ns="1001000000000.0" time="0.0003910064697265625" />
+  </testsuite>
+</testsuites>

@@ -1,0 +1,13 @@
+CAPI=1
+[main]
+description = Counters for real-time system performance debugging
+
+[verilog]
+src_files =
+ rtl/dbg_cnt.v
+
+#[provider]
+#name = github
+#user = andrzej-r
+#repo = dbg_cnt
+#version = master

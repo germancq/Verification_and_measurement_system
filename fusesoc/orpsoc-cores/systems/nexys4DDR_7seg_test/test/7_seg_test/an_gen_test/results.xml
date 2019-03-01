@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites name="results">
+  <testsuite name="all" package="all" tests="0">
+    <property name="random_seed" value="1551457524" />
+    <testcase classname="an_gen_test" name="run_test_001" ratio_time="1485451735221239.0" sim_time_ns="2001000000000.0" time="0.0013470649719238281" />
+    <testcase classname="an_gen_test" name="run_test_002" ratio_time="4457144080722251.5" sim_time_ns="2001000000000.0" time="0.0004489421844482422" />
+    <testcase classname="an_gen_test" name="run_test_003" ratio_time="4546480121343445.0" sim_time_ns="2001000000000.0" time="0.0004401206970214844" />
+    <testcase classname="an_gen_test" name="run_test_004" ratio_time="4526862084142395.0" sim_time_ns="2001000000000.0" time="0.0004420280456542969" />
+    <testcase classname="an_gen_test" name="run_test_005" ratio_time="4621587171806167.0" sim_time_ns="2001000000000.0" time="0.0004329681396484375" />
+    <testcase classname="an_gen_test" name="run_test_006" ratio_time="4435942021141649.0" sim_time_ns="2001000000000.0" time="0.00045108795166015625" />
+    <testcase classname="an_gen_test" name="run_test_007" ratio_time="4466632412985630.5" sim_time_ns="2001000000000.0" time="0.00044798851013183594" />
+    <testcase classname="an_gen_test" name="run_test_008" ratio_time="4050580262548262.5" sim_time_ns="2001000000000.0" time="0.0004940032958984375" />
+    <testcase classname="an_gen_test" name="run_test_009" ratio_time="4002290082975679.5" sim_time_ns="2001000000000.0" time="0.0004999637603759766" />
+    <testcase classname="an_gen_test" name="run_test_010" ratio_time="4310632924499229.5" sim_time_ns="2001000000000.0" time="0.0004642009735107422" />
+  </testsuite>
+</testsuites>

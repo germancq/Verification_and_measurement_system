@@ -1,0 +1,12 @@
+SAPI=1
+[main]
+name = nexys4DDR_7seg_test
+description = "test for nexys4 DDR"
+
+backend = vivado
+
+[vivado]
+xdc_files = data/nexys4.xdc
+part = xc7a100tcsg324-2
+hw_device = xc7a100t_0
+top_module = top
