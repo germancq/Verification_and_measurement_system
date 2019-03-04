@@ -10,26 +10,19 @@ module div_clk_module(
   input clk,
   input rst,
   input [31:0] div,
-  output [2:0] an_gen_o,
+  output [2:0] an_gen_o
   );
 
-wire div_clk;
-assign div_clk = contador_o[div];
+
+assign an_gen_o[0] = contador_o[div];
+assign an_gen_o[1] = contador_o[div+1];
+assign an_gen_o[2] = contador_o[div+2];
 wire [31:0] contador_o;
 contador_up div_clk_counter(
    .clk(clk),
    .rst(rst),
    .up(1'b1),
    .q(contador_o)
-);
-
-assign an = contador_o_1[2:0];
-wire [31:0] contador_o_1;
-contador_up an_gen_counter(
-    .clk(div_clk),
-    .rst(rst),
-    .up(1'b1),
-    .q(contador_o_1)
 );
 
 endmodule

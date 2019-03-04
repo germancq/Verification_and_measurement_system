@@ -3,7 +3,7 @@
 # @Email:  germancq@dte.us.es
 # @Filename: dec_to_7_seg_test.py
 # @Last modified by:   germancq
-# @Last modified time: 2019-03-01T16:46:35+01:00
+# @Last modified time: 2019-03-04T15:23:17+01:00
 
 import cocotb
 import numpy as np
@@ -12,6 +12,9 @@ from cocotb.triggers import Timer
 from cocotb.regression import TestFactory
 from cocotb.result import TestFailure, ReturnValue
 from cocotb.binary import BinaryValue
+
+import sys
+sys.path.insert(0, '/home/germancq/gitProjects/BIST_measurements/fusesoc/orpsoc-cores/systems/nexys4DDR_7seg_test/test/7_seg_test/misc')
 from seven_seg import digit_to_7_seg
 
 #the keyword yield
@@ -51,6 +54,7 @@ def converter_function_test(dut,din):
 
 @cocotb.coroutine
 def run_test(dut, din = 0):
+    print os.getcwd()
     yield rst_function_test(dut)
     yield converter_function_test(dut,din)
 

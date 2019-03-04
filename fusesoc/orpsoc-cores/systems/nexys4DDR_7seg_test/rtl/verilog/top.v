@@ -7,16 +7,20 @@
  * @Last modified time: 2019-03-01T15:42:46+01:00
  */
 module top(
-
+  input sys_clk_pad_i,
+  input center_button,
+  input [15:0] switch_i,
+  output [6:0] seg,
+  output [7:0] AN
 );
 
 
   display display_inst(
-    .clk(clk),
-    .rst(rst),
-    .div_value(32'd19),
-    .din(),
-    .an(an),
+    .clk(sys_clk_pad_i),
+    .rst(center_button),
+    .div_value(32'd18),
+    .din({switch_i,switch_i}),
+    .an(AN),
     .seg(seg)
   );
 
