@@ -1,0 +1,25 @@
+files:
+- {file_type: verilogSource, is_include_file: false, logical_name: '', name: ../src/nexys4DDR_7seg_test_0/rtl/verilog/top.v}
+- {file_type: verilogSource, is_include_file: false, logical_name: '', name: ../src/nexys4DDR_7seg_test_0/rtl/verilog/misc/contador_up.v}
+- {file_type: verilogSource, is_include_file: false, logical_name: '', name: ../src/nexys4DDR_7seg_test_0/rtl/verilog/misc/genericMux.v}
+- {file_type: verilogSource, is_include_file: false, logical_name: '', name: ../src/nexys4DDR_7seg_test_0/rtl/verilog/misc/registro_desp.v}
+- {file_type: verilogSource, is_include_file: false, logical_name: '', name: ../src/nexys4DDR_7seg_test_0/rtl/verilog/misc/registro.v}
+- {file_type: verilogSource, is_include_file: false, logical_name: '', name: ../src/nexys4DDR_7seg_test_0/rtl/verilog/7_seg/display.v}
+- {file_type: verilogSource, is_include_file: false, logical_name: '', name: ../src/nexys4DDR_7seg_test_0/rtl/verilog/7_seg/an_gen.v}
+- {file_type: verilogSource, is_include_file: false, logical_name: '', name: ../src/nexys4DDR_7seg_test_0/rtl/verilog/7_seg/dec_to_7_seg.v}
+- {file_type: verilogSource, is_include_file: false, logical_name: '', name: ../src/nexys4DDR_7seg_test_0/rtl/verilog/7_seg/div_clk_module.v}
+- {file_type: verilogSource, is_include_file: false, logical_name: '', name: ../src/nexys4DDR_7seg_test_0/rtl/verilog/7_seg/mux_8.v}
+- {file_type: verilogSource, is_include_file: false, logical_name: '', name: ../src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/autotest_module.v}
+- {file_type: verilogSource, is_include_file: false, logical_name: '', name: ../src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/fsm_autotest.v}
+- {file_type: verilogSource, is_include_file: false, logical_name: '', name: ../src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/sdspi/sdspihost.v}
+- {file_type: verilogSource, is_include_file: false, logical_name: '', name: ../src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/sdspi/sdcmd.v}
+- {file_type: verilogSource, is_include_file: false, logical_name: '', name: ../src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/sdspi/spi_master.v}
+- {file_type: xdc, is_include_file: false, logical_name: '', name: ../src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc}
+hooks: {}
+name: nexys4DDR_7seg_test_0
+parameters: {}
+tool_options:
+  vivado: {hw_device: xc7a100t_0, part: xc7a100tcsg324-2, top_module: top}
+toplevel: top
+version: 0.2.0
+vpi: []

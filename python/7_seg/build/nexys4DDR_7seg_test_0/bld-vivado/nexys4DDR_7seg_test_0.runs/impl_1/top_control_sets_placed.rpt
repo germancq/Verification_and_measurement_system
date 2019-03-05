@@ -1,0 +1,93 @@
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
+| Date         : Tue Mar  5 15:12:43 2019
+| Host         : german-H61M-D2H-USB3 running 64-bit Ubuntu 16.04.5 LTS
+| Command      : report_control_sets -verbose -file top_control_sets_placed.rpt
+| Design       : top
+| Device       : xc7a100t
+------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Flip-Flop Distribution
+3. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Number of unique control sets                            |    40 |
+| Unused register locations in slices containing registers |    43 |
++----------------------------------------------------------+-------+
+
+
+2. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              49 |           17 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |              43 |           15 |
+| Yes          | No                    | No                     |              77 |           26 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |             404 |          120 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+3. Detailed Control Set Information
+-----------------------------------
+
++-------------------------------+------------------------------------------------------------------------------+---------------------------------------------------------------------------+------------------+----------------+
+|          Clock Signal         |                                 Enable Signal                                |                              Set/Reset Signal                             | Slice Load Count | Bel Load Count |
++-------------------------------+------------------------------------------------------------------------------+---------------------------------------------------------------------------+------------------+----------------+
+|  sys_clk_pad_i_IBUF_BUFG      |                                                                              | autotest_inst/sdspi_inst/sdcmd_module/r_response_4/rst_counter_data_reg_0 |                4 |              4 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/sdspi_inst/spi_module/sclk_w                                   |                                                                           |                2 |              5 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/sdspi_inst/spi_module/E[0]                                     | autotest_inst/fsm_isnt/out[0]                                             |                4 |              5 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/sdspi_inst/r_state_prev_0/g0_b0_n_0                            | autotest_inst/sdspi_inst/r_command_5/SR[0]                                |                2 |              5 |
+|  sys_clk_pad_i_IBUF_BUFG      | display_inst/div_clk_module_inst/div_clk_counter/E[0]                        | autotest_inst/fsm_isnt/reg_signature_data_0_cl                            |                4 |              7 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/dout[6]_i_1__0_n_0                                             | autotest_inst/fsm_isnt/reg_signature_data_0_cl                            |                2 |              7 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/dout[6]_i_1__1_n_0                                             | autotest_inst/fsm_isnt/reg_signature_data_0_cl                            |                2 |              7 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/dout[6]_i_1__2_n_0                                             | autotest_inst/fsm_isnt/reg_signature_data_0_cl                            |                1 |              7 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/dout[6]_i_1__3_n_0                                             | autotest_inst/fsm_isnt/reg_signature_data_0_cl                            |                4 |              7 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/dout[6]_i_1__4_n_0                                             | autotest_inst/fsm_isnt/reg_signature_data_0_cl                            |                3 |              7 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/dout[6]_i_1_n_0                                                | autotest_inst/fsm_isnt/reg_signature_data_0_cl                            |                2 |              7 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/w0                                                             | autotest_inst/fsm_isnt/reg_signature_data_0_cl                            |                1 |              7 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/fsm_isnt/counter_bytes/dout_reg[7]_2[0]                        | autotest_inst/fsm_isnt/reg_signature_data_0_cl                            |                3 |              8 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/fsm_isnt/counter_bytes/E[0]                                    | autotest_inst/fsm_isnt/reg_signature_data_0_cl                            |                3 |              8 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/fsm_isnt/counter_bytes/dout_reg[7]_5[0]                        | autotest_inst/fsm_isnt/reg_signature_data_0_cl                            |                2 |              8 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/fsm_isnt/counter_bytes/dout_reg[7]_4[0]                        | autotest_inst/fsm_isnt/reg_signature_data_0_cl                            |                2 |              8 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/sdspi_inst/spi_module/master_in_reg/dout[7]_i_1__8_n_0         |                                                                           |                3 |              8 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/sdspi_inst/spi_module/master_out_reg/dout[7]_i_1__9_n_0        |                                                                           |                3 |              8 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/sdspi_inst/sdcmd_module/r_spi_out_sdcmd_in/spi_out_0_w         |                                                                           |                2 |              8 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/sdspi_inst/sdcmd_module/r_response_4/dout_reg[7]_0             |                                                                           |                5 |              8 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/sdspi_inst/sdcmd_module/r_spi_in_sdcmd_out/dout[7]_i_1__18_n_0 |                                                                           |                3 |              8 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/sdspi_inst/sdcmd_module/counter/E[0]                           | autotest_inst/sdspi_inst/sdcmd_module/r_response_4/response_4_cl          |                2 |              8 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/fsm_isnt/counter_bytes/dout_reg[7]_3[0]                        | autotest_inst/fsm_isnt/reg_signature_data_0_cl                            |                3 |              8 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/fsm_isnt/out[2]                                                | autotest_inst/fsm_isnt/reg_signature_data_0_cl                            |                2 |              8 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/fsm_isnt/counter_bytes/dout_reg[7][0]                          | autotest_inst/fsm_isnt/reg_signature_data_0_cl                            |                3 |              8 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/fsm_isnt/counter_bytes/dout_reg[7]_0[0]                        | autotest_inst/fsm_isnt/reg_signature_data_0_cl                            |                3 |              8 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/fsm_isnt/counter_bytes/dout_reg[7]_1[0]                        | autotest_inst/fsm_isnt/reg_signature_data_0_cl                            |                1 |              8 |
+|  sys_clk_pad_i_IBUF_BUFG      |                                                                              |                                                                           |                9 |             17 |
+|  sys_clk_pad_i_IBUF_BUFG      |                                                                              | center_button_IBUF                                                        |                5 |             18 |
+|  sys_clk_pad_i_IBUF_BUFG      |                                                                              | autotest_inst/fsm_isnt/q_reg[0]                                           |                6 |             21 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/fsm_isnt/counter_bytes/FSM_onehot_current_state_reg[17][0]     | center_button_IBUF                                                        |                9 |             23 |
+|  fsm_isnt/counter_divclk_o[5] | autotest_inst/fsm_isnt/up_timer_counter                                      | autotest_inst/fsm_isnt/counter_timer/rst_timer_counter                    |                8 |             32 |
+|  contador_o[17]               |                                                                              |                                                                           |                8 |             32 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/fsm_isnt/counter_bytes/up_bytes_counter                        | autotest_inst/fsm_isnt/counter_bytes/rst_bytes_counter                    |                8 |             32 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/sdspi_inst/spi_module/up_data_reg_n_0                          | autotest_inst/sdspi_inst/spi_module/rst_counter_data_reg_n_0              |                8 |             32 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/sdspi_inst/spi_module/up_sclk                                  | autotest_inst/sdspi_inst/spi_module/rst_counter_sclk                      |                8 |             32 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/fsm_isnt/counter_timer/up_block_counter                        |                                                                           |                8 |             32 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/sdspi_inst/counter_wait/q[0]_i_2__0_n_0                        | autotest_inst/sdspi_inst/counter_wait/q[0]_i_1__3_n_0                     |                8 |             32 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/sdspi_inst/sdcmd_module/counter/up                             | autotest_inst/sdspi_inst/sdcmd_module/counter/q[0]_i_1__4_n_0             |                8 |             32 |
+|  sys_clk_pad_i_IBUF_BUFG      | autotest_inst/sdspi_inst/r_command_4/E[0]                                    | autotest_inst/sdspi_inst/r_command_5/SR[0]                                |               14 |             43 |
++-------------------------------+------------------------------------------------------------------------------+---------------------------------------------------------------------------+------------------+----------------+
+
+

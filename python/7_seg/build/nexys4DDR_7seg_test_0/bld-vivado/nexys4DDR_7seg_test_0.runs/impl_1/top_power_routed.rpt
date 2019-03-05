@@ -1,0 +1,195 @@
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------------------------------------------------
+| Tool Version     : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
+| Date             : Tue Mar  5 15:13:07 2019
+| Host             : german-H61M-D2H-USB3 running 64-bit Ubuntu 16.04.5 LTS
+| Command          : report_power -file top_power_routed.rpt -pb top_power_summary_routed.pb -rpx top_power_routed.rpx
+| Design           : top
+| Device           : xc7a100tcsg324-2
+| Design State     : routed
+| Grade            : commercial
+| Process          : typical
+| Characterization : Production
+-------------------------------------------------------------------------------------------------------------------------------
+
+Power Report
+
+Table of Contents
+-----------------
+1. Summary
+1.1 On-Chip Components
+1.2 Power Supply Summary
+1.3 Confidence Level
+2. Settings
+2.1 Environment
+2.2 Clock Constraints
+3. Detailed Reports
+3.1 By Hierarchy
+
+1. Summary
+----------
+
++--------------------------+--------+
+| Total On-Chip Power (W)  | 0.118  |
+| Dynamic (W)              | 0.021  |
+| Device Static (W)        | 0.097  |
+| Effective TJA (C/W)      | 4.6    |
+| Max Ambient (C)          | 84.5   |
+| Junction Temperature (C) | 25.5   |
+| Confidence Level         | Medium |
+| Setting File             | ---    |
+| Simulation Activity File | ---    |
+| Design Nets Matched      | NA     |
++--------------------------+--------+
+
+
+1.1 On-Chip Components
+----------------------
+
++----------------+-----------+----------+-----------+-----------------+
+| On-Chip        | Power (W) | Used     | Available | Utilization (%) |
++----------------+-----------+----------+-----------+-----------------+
+| Clocks         |     0.002 |        3 |       --- |             --- |
+| Slice Logic    |     0.002 |     1231 |       --- |             --- |
+|   LUT as Logic |     0.001 |      451 |     63400 |            0.71 |
+|   CARRY4       |    <0.001 |       79 |     15850 |            0.50 |
+|   Register     |    <0.001 |      573 |    126800 |            0.45 |
+|   BUFG         |    <0.001 |        2 |        32 |            6.25 |
+|   F7/F8 Muxes  |    <0.001 |       23 |     63400 |            0.04 |
+|   Others       |     0.000 |       39 |       --- |             --- |
+| Signals        |     0.002 |     1007 |       --- |             --- |
+| I/O            |     0.015 |       40 |       210 |           19.05 |
+| Static Power   |     0.097 |          |           |                 |
+| Total          |     0.118 |          |           |                 |
++----------------+-----------+----------+-----------+-----------------+
+
+
+1.2 Power Supply Summary
+------------------------
+
++-----------+-------------+-----------+-------------+------------+
+| Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
++-----------+-------------+-----------+-------------+------------+
+| Vccint    |       1.000 |     0.021 |       0.006 |      0.015 |
+| Vccaux    |       1.800 |     0.019 |       0.001 |      0.018 |
+| Vcco33    |       3.300 |     0.008 |       0.004 |      0.004 |
+| Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
+| Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
+| Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
+| Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |
+| Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |
+| Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |
+| Vccbram   |       1.000 |     0.000 |       0.000 |      0.000 |
+| MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |
+| MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |
+| Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |
++-----------+-------------+-----------+-------------+------------+
+
+
+1.3 Confidence Level
+--------------------
+
++-----------------------------+------------+-------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+
+| User Input Data             | Confidence | Details                                               | Action                                                                                                             |
++-----------------------------+------------+-------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+
+| Design implementation state | High       | Design is routed                                      |                                                                                                                    |
+| Clock nodes activity        | Medium     | More than 5% of clocks are missing user specification | Provide missing clock activity with a constraint file, simulation results or by editing the "By Clock Domain" view |
+| I/O nodes activity          | Medium     | More than 5% of inputs are missing user specification | Provide missing input activity with simulation results or by editing the "By Resource Type -> I/Os" view           |
+| Internal nodes activity     | Medium     | User specified less than 25% of internal nodes        | Provide missing internal nodes activity with simulation results or by editing the "By Resource Type" views         |
+| Device models               | High       | Device models are Production                          |                                                                                                                    |
+|                             |            |                                                       |                                                                                                                    |
+| Overall confidence level    | Medium     |                                                       |                                                                                                                    |
++-----------------------------+------------+-------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------+
+
+
+2. Settings
+-----------
+
+2.1 Environment
+---------------
+
++-----------------------+--------------------------+
+| Ambient Temp (C)      | 25.0                     |
+| ThetaJA (C/W)         | 4.6                      |
+| Airflow (LFM)         | 250                      |
+| Heat Sink             | medium (Medium Profile)  |
+| ThetaSA (C/W)         | 4.6                      |
+| Board Selection       | medium (10"x10")         |
+| # of Board Layers     | 12to15 (12 to 15 Layers) |
+| Board Temperature (C) | 25.0                     |
++-----------------------+--------------------------+
+
+
+2.2 Clock Constraints
+---------------------
+
++-------------+---------------+-----------------+
+| Clock       | Domain        | Constraint (ns) |
++-------------+---------------+-----------------+
+| sys_clk_pin | sys_clk_pad_i |            10.0 |
++-------------+---------------+-----------------+
+
+
+3. Detailed Reports
+-------------------
+
+3.1 By Hierarchy
+----------------
+
++----------------------------+-----------+
+| Name                       | Power (W) |
++----------------------------+-----------+
+| top                        |     0.021 |
+|   autotest_inst            |     0.006 |
+|     div_clk_counter        |    <0.001 |
+|     fsm_isnt               |     0.002 |
+|       counter_block        |    <0.001 |
+|       counter_bytes        |    <0.001 |
+|       counter_divclk       |    <0.001 |
+|       counter_timer        |    <0.001 |
+|       reg_din_0            |    <0.001 |
+|       reg_din_1            |    <0.001 |
+|       reg_din_2            |    <0.001 |
+|       reg_din_3            |    <0.001 |
+|       reg_seg_0            |    <0.001 |
+|       reg_seg_1            |    <0.001 |
+|       reg_seg_2            |    <0.001 |
+|       reg_seg_3            |    <0.001 |
+|       reg_seg_4            |    <0.001 |
+|       reg_seg_5            |    <0.001 |
+|       reg_seg_6            |    <0.001 |
+|       reg_seg_7            |    <0.001 |
+|       reg_signature_0      |    <0.001 |
+|       reg_signature_1      |    <0.001 |
+|       reg_signature_2      |    <0.001 |
+|       reg_signature_3      |    <0.001 |
+|       reg_spi_data         |    <0.001 |
+|     sdspi_inst             |     0.004 |
+|       counter_wait         |    <0.001 |
+|       r_command_0          |    <0.001 |
+|       r_command_1          |    <0.001 |
+|       r_command_2          |    <0.001 |
+|       r_command_3          |    <0.001 |
+|       r_command_4          |    <0.001 |
+|       r_command_5          |    <0.001 |
+|       r_state_prev_0       |    <0.001 |
+|       reg_spi_internal     |    <0.001 |
+|       sdcmd_module         |     0.001 |
+|         counter            |    <0.001 |
+|         r_response_4       |    <0.001 |
+|         r_spi_in_sdcmd_out |    <0.001 |
+|         r_spi_out_sdcmd_in |    <0.001 |
+|         r_state_prev_0     |    <0.001 |
+|       spi_module           |    <0.001 |
+|         counter_data       |    <0.001 |
+|         counter_sclk       |    <0.001 |
+|         master_in_reg      |    <0.001 |
+|         master_out_reg     |    <0.001 |
+|         reg_data_input     |    <0.001 |
+|         sclk_register      |    <0.001 |
+|   display_inst             |    <0.001 |
+|     div_clk_module_inst    |    <0.001 |
+|       div_clk_counter      |    <0.001 |
++----------------------------+-----------+
+
+

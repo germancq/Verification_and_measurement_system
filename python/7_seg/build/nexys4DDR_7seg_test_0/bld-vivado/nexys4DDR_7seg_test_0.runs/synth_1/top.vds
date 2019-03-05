@@ -1,0 +1,974 @@
+#-----------------------------------------------------------
+# Vivado v2016.2 (64-bit)
+# SW Build 1577090 on Thu Jun  2 16:32:35 MDT 2016
+# IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
+# Start of session at: Tue Mar  5 15:11:36 2019
+# Process ID: 21488
+# Current directory: /home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/bld-vivado/nexys4DDR_7seg_test_0.runs/synth_1
+# Command line: vivado -log top.vds -mode batch -messageDb vivado.pb -notrace -source top.tcl
+# Log file: /home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/bld-vivado/nexys4DDR_7seg_test_0.runs/synth_1/top.vds
+# Journal file: /home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/bld-vivado/nexys4DDR_7seg_test_0.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source top.tcl -notrace
+Command: synth_design -top top -part xc7a100tcsg324-2
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 21497 
+WARNING: [Synth 8-2292] literal value truncated to fit in 32 bits [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/fsm_autotest.v:245]
+WARNING: [Synth 8-992] spi_in_internal_signal_o is already implicitly declared earlier [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/sdspi/sdspihost.v:130]
+WARNING: [Synth 8-992] master_out_cl is already implicitly declared earlier [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/sdspi/spi_master.v:62]
+WARNING: [Synth 8-992] master_out_w is already implicitly declared earlier [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/sdspi/spi_master.v:63]
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1051.855 ; gain = 164.324 ; free physical = 117 ; free virtual = 12228
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'top' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/top.v:9]
+INFO: [Synth 8-638] synthesizing module 'autotest_module' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/autotest_module.v:9]
+INFO: [Synth 8-638] synthesizing module 'contador_up' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/misc/contador_up.v:9]
+INFO: [Synth 8-256] done synthesizing module 'contador_up' (1#1) [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/misc/contador_up.v:9]
+INFO: [Synth 8-638] synthesizing module 'fsm_autotest' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/fsm_autotest.v:10]
+	Parameter IDLE bound to: 5'b00000 
+	Parameter BEGIN_READ_FROM_SD bound to: 5'b00001 
+	Parameter WAIT_RST_SPI bound to: 5'b00010 
+	Parameter SEL_SD_BLOCK bound to: 5'b00011 
+	Parameter WAIT_BLOCK bound to: 5'b00100 
+	Parameter READ_DATA bound to: 5'b00101 
+	Parameter WAIT_BYTE bound to: 5'b00110 
+	Parameter READ_BYTE bound to: 5'b00111 
+	Parameter CHECK_SIGNATURE bound to: 5'b01000 
+	Parameter START_TEST bound to: 5'b01001 
+	Parameter WAIT_UNTIL_END_TEST_OR_TIMEOUT bound to: 5'b01010 
+	Parameter END_TEST bound to: 5'b01011 
+	Parameter SEL_WRITE_SD_BLOCK bound to: 5'b01100 
+	Parameter WAIT_W_BLOCK bound to: 5'b01101 
+	Parameter WRITE_DATA bound to: 5'b01110 
+	Parameter WAIT_W_BYTE bound to: 5'b01111 
+	Parameter UPDATE_BLOCK_COUNTER bound to: 5'b10000 
+	Parameter END_FSM bound to: 5'b10001 
+INFO: [Synth 8-638] synthesizing module 'registro' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/misc/registro.v:10]
+	Parameter WIDTH bound to: 8 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'registro' (2#1) [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/misc/registro.v:10]
+WARNING: [Synth 8-689] width (7) of port connection 'din' does not match port width (8) of module 'registro' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/fsm_autotest.v:143]
+WARNING: [Synth 8-689] width (7) of port connection 'din' does not match port width (8) of module 'registro' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/fsm_autotest.v:153]
+WARNING: [Synth 8-689] width (7) of port connection 'din' does not match port width (8) of module 'registro' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/fsm_autotest.v:163]
+WARNING: [Synth 8-689] width (7) of port connection 'din' does not match port width (8) of module 'registro' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/fsm_autotest.v:173]
+WARNING: [Synth 8-689] width (7) of port connection 'din' does not match port width (8) of module 'registro' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/fsm_autotest.v:183]
+WARNING: [Synth 8-689] width (7) of port connection 'din' does not match port width (8) of module 'registro' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/fsm_autotest.v:193]
+WARNING: [Synth 8-689] width (7) of port connection 'din' does not match port width (8) of module 'registro' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/fsm_autotest.v:203]
+WARNING: [Synth 8-689] width (7) of port connection 'din' does not match port width (8) of module 'registro' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/fsm_autotest.v:213]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/fsm_autotest.v:356]
+WARNING: [Synth 8-3848] Net reg_gl_clk_w in module/entity fsm_autotest does not have driver. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/fsm_autotest.v:224]
+INFO: [Synth 8-256] done synthesizing module 'fsm_autotest' (3#1) [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/fsm_autotest.v:10]
+INFO: [Synth 8-638] synthesizing module 'sdspihost' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/sdspi/sdspihost.v:10]
+	Parameter INIT_0 bound to: 5'b00000 
+	Parameter WAIT_250_ms bound to: 5'b00001 
+	Parameter WAIT_74_CYC bound to: 5'b00010 
+	Parameter CMD0_0 bound to: 5'b00011 
+	Parameter CMD0_1 bound to: 5'b00100 
+	Parameter CMD8_0 bound to: 5'b00101 
+	Parameter CMD8_1 bound to: 5'b00110 
+	Parameter CMD55_0 bound to: 5'b00111 
+	Parameter CMD55_1 bound to: 5'b01000 
+	Parameter ACMD41_0 bound to: 5'b01001 
+	Parameter ACMD41_1 bound to: 5'b01010 
+	Parameter IDLE bound to: 5'b01011 
+	Parameter WAIT_BEFORE_READ bound to: 5'b01100 
+	Parameter CMD17_0 bound to: 5'b01101 
+	Parameter CMD17_1 bound to: 5'b01110 
+	Parameter CMD18_0 bound to: 5'b01111 
+	Parameter CMD18_1 bound to: 5'b10000 
+	Parameter CMD24_0 bound to: 5'b10001 
+	Parameter CMD24_1 bound to: 5'b10010 
+	Parameter CMD12_0 bound to: 5'b10011 
+	Parameter CMD12_1 bound to: 5'b10100 
+	Parameter WRITE_FE_TOKEN bound to: 5'b10101 
+	Parameter WAIT_FOR_BYTE_TO_WRITE bound to: 5'b10110 
+	Parameter WRITE_BYTE bound to: 5'b10111 
+	Parameter WAIT_WRITE_BLOCK_RSP bound to: 5'b11000 
+	Parameter WAIT_FE_TOKEN bound to: 5'b11001 
+	Parameter WAIT_BYTE bound to: 5'b11010 
+	Parameter BYTE_READY bound to: 5'b11011 
+	Parameter ABORT_READ bound to: 5'b11100 
+	Parameter WAIT_CMD_RSP bound to: 5'b11101 
+	Parameter WAIT_SPI bound to: 5'b11110 
+	Parameter ERROR bound to: 5'b11111 
+INFO: [Synth 8-638] synthesizing module 'spi_master' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/sdspi/spi_master.v:10]
+INFO: [Synth 8-638] synthesizing module 'registro_desp' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/misc/registro_desp.v:9]
+	Parameter WIDTH bound to: 8 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'registro_desp' (4#1) [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/misc/registro_desp.v:9]
+INFO: [Synth 8-638] synthesizing module 'registro__parameterized0' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/misc/registro.v:10]
+	Parameter WIDTH bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'registro__parameterized0' (4#1) [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/misc/registro.v:10]
+INFO: [Synth 8-4471] merging register 'master_out_cl_reg' into 'sclk_cl_reg' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/sdspi/spi_master.v:52]
+INFO: [Synth 8-4471] merging register 'master_in_cl_reg' into 'sclk_cl_reg' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/sdspi/spi_master.v:40]
+INFO: [Synth 8-4471] merging register 'reg_sclk_cl_reg' into 'sclk_cl_reg' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/sdspi/spi_master.v:94]
+INFO: [Synth 8-256] done synthesizing module 'spi_master' (5#1) [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/sdspi/spi_master.v:10]
+INFO: [Synth 8-638] synthesizing module 'sdcmd' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/sdspi/sdcmd.v:11]
+	Parameter IDLE bound to: 4'b0000 
+	Parameter SEND_CMD bound to: 4'b0001 
+	Parameter WAIT_RESP bound to: 4'b0010 
+	Parameter READ_RESP bound to: 4'b0011 
+	Parameter WAIT_SPI bound to: 4'b0100 
+INFO: [Synth 8-155] case statement is not full and has no default [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/sdspi/sdcmd.v:205]
+INFO: [Synth 8-256] done synthesizing module 'sdcmd' (6#1) [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/sdspi/sdcmd.v:11]
+INFO: [Synth 8-638] synthesizing module 'generic_mux' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/misc/genericMux.v:10]
+	Parameter DATA_WIDTH bound to: 8 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'generic_mux' (7#1) [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/misc/genericMux.v:10]
+INFO: [Synth 8-638] synthesizing module 'generic_mux__parameterized0' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/misc/genericMux.v:10]
+	Parameter DATA_WIDTH bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'generic_mux__parameterized0' (7#1) [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/misc/genericMux.v:10]
+INFO: [Synth 8-638] synthesizing module 'generic_mux__parameterized1' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/misc/genericMux.v:10]
+	Parameter DATA_WIDTH bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'generic_mux__parameterized1' (7#1) [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/misc/genericMux.v:10]
+INFO: [Synth 8-638] synthesizing module 'registro__parameterized1' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/misc/registro.v:10]
+	Parameter WIDTH bound to: 1 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'registro__parameterized1' (7#1) [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/misc/registro.v:10]
+INFO: [Synth 8-256] done synthesizing module 'sdspihost' (8#1) [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/sdspi/sdspihost.v:10]
+INFO: [Synth 8-256] done synthesizing module 'autotest_module' (9#1) [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/autotest_module.v:9]
+WARNING: [Synth 8-2900] ignoring illegal expression in output port connection [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/top.v:46]
+INFO: [Synth 8-638] synthesizing module 'display' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/7_seg/display.v:9]
+INFO: [Synth 8-638] synthesizing module 'div_clk_module' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/7_seg/div_clk_module.v:9]
+INFO: [Synth 8-256] done synthesizing module 'div_clk_module' (10#1) [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/7_seg/div_clk_module.v:9]
+INFO: [Synth 8-638] synthesizing module 'mux_8' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/7_seg/mux_8.v:9]
+	Parameter DATA_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-638] synthesizing module 'generic_mux__parameterized2' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/misc/genericMux.v:10]
+	Parameter DATA_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'generic_mux__parameterized2' (10#1) [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/misc/genericMux.v:10]
+INFO: [Synth 8-638] synthesizing module 'generic_mux__parameterized3' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/misc/genericMux.v:10]
+	Parameter DATA_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'generic_mux__parameterized3' (10#1) [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/misc/genericMux.v:10]
+INFO: [Synth 8-638] synthesizing module 'generic_mux__parameterized4' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/misc/genericMux.v:10]
+	Parameter DATA_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'generic_mux__parameterized4' (10#1) [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/misc/genericMux.v:10]
+INFO: [Synth 8-638] synthesizing module 'generic_mux__parameterized5' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/misc/genericMux.v:10]
+	Parameter DATA_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'generic_mux__parameterized5' (10#1) [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/misc/genericMux.v:10]
+INFO: [Synth 8-638] synthesizing module 'generic_mux__parameterized6' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/misc/genericMux.v:10]
+	Parameter DATA_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'generic_mux__parameterized6' (10#1) [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/misc/genericMux.v:10]
+INFO: [Synth 8-638] synthesizing module 'generic_mux__parameterized7' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/misc/genericMux.v:10]
+	Parameter DATA_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'generic_mux__parameterized7' (10#1) [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/misc/genericMux.v:10]
+INFO: [Synth 8-638] synthesizing module 'generic_mux__parameterized8' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/misc/genericMux.v:10]
+	Parameter DATA_WIDTH bound to: 4 - type: integer 
+INFO: [Synth 8-256] done synthesizing module 'generic_mux__parameterized8' (10#1) [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/misc/genericMux.v:10]
+INFO: [Synth 8-256] done synthesizing module 'mux_8' (11#1) [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/7_seg/mux_8.v:9]
+INFO: [Synth 8-638] synthesizing module 'dec_to_7_seg' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/7_seg/dec_to_7_seg.v:9]
+INFO: [Synth 8-256] done synthesizing module 'dec_to_7_seg' (12#1) [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/7_seg/dec_to_7_seg.v:9]
+INFO: [Synth 8-638] synthesizing module 'an_gen' [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/7_seg/an_gen.v:9]
+INFO: [Synth 8-256] done synthesizing module 'an_gen' (13#1) [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/7_seg/an_gen.v:9]
+INFO: [Synth 8-256] done synthesizing module 'display' (14#1) [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/7_seg/display.v:9]
+INFO: [Synth 8-256] done synthesizing module 'top' (15#1) [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/top.v:9]
+WARNING: [Synth 8-3331] design div_clk_module has unconnected port div[31]
+WARNING: [Synth 8-3331] design div_clk_module has unconnected port div[30]
+WARNING: [Synth 8-3331] design div_clk_module has unconnected port div[29]
+WARNING: [Synth 8-3331] design div_clk_module has unconnected port div[28]
+WARNING: [Synth 8-3331] design div_clk_module has unconnected port div[27]
+WARNING: [Synth 8-3331] design div_clk_module has unconnected port div[26]
+WARNING: [Synth 8-3331] design div_clk_module has unconnected port div[25]
+WARNING: [Synth 8-3331] design div_clk_module has unconnected port div[24]
+WARNING: [Synth 8-3331] design div_clk_module has unconnected port div[23]
+WARNING: [Synth 8-3331] design div_clk_module has unconnected port div[22]
+WARNING: [Synth 8-3331] design div_clk_module has unconnected port div[21]
+WARNING: [Synth 8-3331] design div_clk_module has unconnected port div[20]
+WARNING: [Synth 8-3331] design div_clk_module has unconnected port div[19]
+WARNING: [Synth 8-3331] design div_clk_module has unconnected port div[18]
+WARNING: [Synth 8-3331] design div_clk_module has unconnected port div[17]
+WARNING: [Synth 8-3331] design div_clk_module has unconnected port div[16]
+WARNING: [Synth 8-3331] design div_clk_module has unconnected port div[15]
+WARNING: [Synth 8-3331] design div_clk_module has unconnected port div[14]
+WARNING: [Synth 8-3331] design div_clk_module has unconnected port div[13]
+WARNING: [Synth 8-3331] design div_clk_module has unconnected port div[12]
+WARNING: [Synth 8-3331] design div_clk_module has unconnected port div[11]
+WARNING: [Synth 8-3331] design div_clk_module has unconnected port div[10]
+WARNING: [Synth 8-3331] design div_clk_module has unconnected port div[9]
+WARNING: [Synth 8-3331] design div_clk_module has unconnected port div[8]
+WARNING: [Synth 8-3331] design div_clk_module has unconnected port div[7]
+WARNING: [Synth 8-3331] design div_clk_module has unconnected port div[6]
+WARNING: [Synth 8-3331] design div_clk_module has unconnected port div[5]
+WARNING: [Synth 8-3331] design spi_master has unconnected port clk_spi
+WARNING: [Synth 8-3331] design fsm_autotest has unconnected port spi_err
+WARNING: [Synth 8-3331] design fsm_autotest has unconnected port spi_crc_err
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[15]
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[14]
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[13]
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[12]
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[11]
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[10]
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[9]
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[8]
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[7]
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[6]
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[5]
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[4]
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[3]
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[2]
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[1]
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[0]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1084.105 ; gain = 196.574 ; free physical = 123 ; free virtual = 12199
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+WARNING: [Synth 8-3295] tying undriven pin counter_divclk:rst to constant 0 [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/rtl/verilog/autotest_module/fsm_autotest.v:222]
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1084.105 ; gain = 196.574 ; free physical = 123 ; free virtual = 12199
+---------------------------------------------------------------------------------
+INFO: [Device 21-403] Loading part xc7a100tcsg324-2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc]
+WARNING: [Vivado 12-584] No ports matched 'DP'. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:68]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:68]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'rst_n_pad_i'. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:82]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:82]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'up_button'. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:85]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:85]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'next_button'. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:87]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:87]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'tdo_pad_o'. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:96]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:96]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'tms_pad_i'. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:97]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:97]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'tdi_pad_i'. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:98]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:98]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'tck_pad_i'. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:101]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:101]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'inicio_proceso_led'. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:108]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:108]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'fin_de_proceso_led'. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:109]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:109]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'VGA_R[0]'. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:156]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:156]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'VGA_R[1]'. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:157]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:157]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'VGA_R[2]'. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:158]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:158]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'VGA_R[3]'. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:159]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:159]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'VGA_G[0]'. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:161]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:161]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'VGA_G[1]'. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:162]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:162]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'VGA_G[2]'. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:163]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:163]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'VGA_G[3]'. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:164]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:164]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'VGA_B[0]'. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:166]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:166]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'VGA_B[1]'. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:167]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:167]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'VGA_B[2]'. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:168]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:168]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'VGA_B[3]'. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:169]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:169]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'VGA_HS'. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:171]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:171]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'VGA_VS'. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:172]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:172]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'uart0_srx_pad_i'. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:219]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:219]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'uart0_stx_pad_o'. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:220]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:220]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+WARNING: [Vivado 12-584] No ports matched 'tck_pad_i'. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:255]
+CRITICAL WARNING: [Vivado 12-4739] create_clock:No valid object(s) found for '-objects [get_ports tck_pad_i]'. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:255]
+Resolution: Check if the specified object(s) exists in the current design. If it does, ensure that the correct design hierarchy was specified for the object. If you are working with clocks, make sure create_clock was used to create the clock object before it is referenced.
+WARNING: [Vivado 12-507] No nets matched 'tck_pad_i_IBUF'. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:256]
+CRITICAL WARNING: [Common 17-55] 'set_property' expects at least one object. [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc:256]
+Resolution: If [get_<value>] was used to populate the object, check to make sure this command returns at least one valid object.
+Finished Parsing XDC File [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [/home/germancq/gitProjects/BIST_measurements/python/7_seg/build/nexys4DDR_7seg_test_0/src/nexys4DDR_7seg_test_0/data/Nexys4DDR_Master.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/top_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Completed Processing XDC Constraints
+
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1432.621 ; gain = 0.000 ; free physical = 127 ; free virtual = 12026
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1432.621 ; gain = 545.090 ; free physical = 129 ; free virtual = 12025
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tcsg324-2
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1432.621 ; gain = 545.090 ; free physical = 130 ; free virtual = 12025
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1432.621 ; gain = 545.090 ; free physical = 129 ; free virtual = 12025
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'current_state_reg' in module 'fsm_autotest'
+INFO: [Synth 8-5545] ROM "rst_bytes_counter" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "reg_signature_data_0_w" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "reg_signature_data_1_w" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "reg_signature_data_2_w" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "reg_signature_data_3_w" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "reg_din_0_w" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "reg_din_1_w" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "reg_din_2_w" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "reg_din_3_w" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "next_state" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "next_state" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5587] ROM size for "display_rst" is below threshold of ROM address width. It will be mapped to LUTs
+INFO: [Synth 8-5546] ROM "spi_w_block" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "spi_w_byte" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "reg_signature_data_0_cl" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "spi_rst" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "spi_r_byte" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5587] ROM size for "spi_r_block" is below threshold of ROM address width. It will be mapped to LUTs
+INFO: [Synth 8-5546] ROM "up_timer_counter" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "rst_timer_counter" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5545] ROM "next_state" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5544] ROM "next_state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5545] ROM "next_state" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "response_4_w" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "response_4_w" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "response_3_w" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "response_2_w" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "response_1_w" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "response_0_w" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "next_state" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "next_state" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "next_state" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "rst_counter" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "up_counter" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5546] ROM "spi_in_internal_signal_w" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5545] ROM "next_state" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "next_state" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "next_state" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "next_state" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5546] ROM "next_state" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "next_state" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "next_state" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "next_state" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5545] ROM "next_state" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "next_state" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+                    IDLE |               000000000000000001 |                            00000
+      BEGIN_READ_FROM_SD |               000000000000000010 |                            00001
+            WAIT_RST_SPI |               000000000000000100 |                            00010
+            SEL_SD_BLOCK |               000000000000001000 |                            00011
+              WAIT_BLOCK |               000000000000010000 |                            00100
+               READ_DATA |               000000000000100000 |                            00101
+               READ_BYTE |               000000000001000000 |                            00111
+               WAIT_BYTE |               000000000010000000 |                            00110
+         CHECK_SIGNATURE |               000000000100000000 |                            01000
+              START_TEST |               000000001000000000 |                            01001
+WAIT_UNTIL_END_TEST_OR_TIMEOUT |               000000010000000000 |                            01010
+                END_TEST |               000000100000000000 |                            01011
+      SEL_WRITE_SD_BLOCK |               000001000000000000 |                            01100
+            WAIT_W_BLOCK |               000010000000000000 |                            01101
+              WRITE_DATA |               000100000000000000 |                            01110
+             WAIT_W_BYTE |               001000000000000000 |                            01111
+    UPDATE_BLOCK_COUNTER |               010000000000000000 |                            10000
+                 END_FSM |               100000000000000000 |                            10001
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3354] encoded FSM with state register 'current_state_reg' using encoding 'one-hot' in module 'fsm_autotest'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1432.621 ; gain = 545.090 ; free physical = 127 ; free virtual = 12004
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 1     
+	   2 Input      5 Bit       Adders := 3     
++---XORs : 
+	   2 Input      8 Bit         XORs := 1     
++---Registers : 
+	                8 Bit    Registers := 37    
+	                5 Bit    Registers := 2     
+	                3 Bit    Registers := 1     
+	                1 Bit    Registers := 18    
++---Muxes : 
+	  45 Input     18 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 9     
+	  18 Input      8 Bit        Muxes := 1     
+	   6 Input      8 Bit        Muxes := 2     
+	  32 Input      8 Bit        Muxes := 6     
+	   3 Input      8 Bit        Muxes := 1     
+	  17 Input      7 Bit        Muxes := 1     
+	   2 Input      5 Bit        Muxes := 12    
+	  19 Input      5 Bit        Muxes := 1     
+	   4 Input      5 Bit        Muxes := 2     
+	   3 Input      5 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 8     
+	   8 Input      4 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 5     
+	   7 Input      3 Bit        Muxes := 1     
+	   6 Input      3 Bit        Muxes := 1     
+	  32 Input      3 Bit        Muxes := 1     
+	  32 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 46    
+	  18 Input      1 Bit        Muxes := 18    
+	   8 Input      1 Bit        Muxes := 8     
+	   5 Input      1 Bit        Muxes := 1     
+	   6 Input      1 Bit        Muxes := 19    
+	  32 Input      1 Bit        Muxes := 11    
+	   4 Input      1 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Hierarchical Component Statistics 
+---------------------------------------------------------------------------------
+Hierarchical RTL Component report 
+Module registro 
+Detailed RTL Component Info : 
++---Registers : 
+	                8 Bit    Registers := 1     
+Module fsm_autotest 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     32 Bit       Adders := 1     
++---Registers : 
+	                5 Bit    Registers := 1     
++---Muxes : 
+	  45 Input     18 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 1     
+	  18 Input      8 Bit        Muxes := 1     
+	   2 Input      5 Bit        Muxes := 2     
+	  19 Input      5 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 1     
+	   8 Input      4 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 11    
+	  18 Input      1 Bit        Muxes := 18    
+	   8 Input      1 Bit        Muxes := 8     
+Module registro_desp 
+Detailed RTL Component Info : 
++---Registers : 
+	                8 Bit    Registers := 1     
++---Muxes : 
+	   2 Input      8 Bit        Muxes := 2     
+	   2 Input      1 Bit        Muxes := 2     
+Module registro__parameterized0 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
+Module spi_master 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 14    
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 8     
+	   5 Input      1 Bit        Muxes := 1     
+Module sdcmd 
+Detailed RTL Component Info : 
++---Registers : 
+	                3 Bit    Registers := 1     
++---Muxes : 
+	   6 Input      8 Bit        Muxes := 1     
+	   2 Input      8 Bit        Muxes := 1     
+	   2 Input      3 Bit        Muxes := 5     
+	   7 Input      3 Bit        Muxes := 1     
+	   6 Input      3 Bit        Muxes := 1     
+	   6 Input      1 Bit        Muxes := 19    
+	   2 Input      1 Bit        Muxes := 11    
+Module generic_mux 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      8 Bit        Muxes := 1     
+Module generic_mux__parameterized0 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 1     
+Module generic_mux__parameterized1 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      1 Bit        Muxes := 1     
+Module registro__parameterized1 
+Detailed RTL Component Info : 
++---Registers : 
+	                1 Bit    Registers := 1     
+Module sdspihost 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      5 Bit       Adders := 1     
++---Registers : 
+	                5 Bit    Registers := 1     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	  32 Input      8 Bit        Muxes := 6     
+	   2 Input      8 Bit        Muxes := 1     
+	   3 Input      8 Bit        Muxes := 1     
+	   6 Input      8 Bit        Muxes := 1     
+	   2 Input      5 Bit        Muxes := 10    
+	   4 Input      5 Bit        Muxes := 2     
+	   3 Input      5 Bit        Muxes := 1     
+	  32 Input      3 Bit        Muxes := 1     
+	  32 Input      2 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 10    
+	  32 Input      1 Bit        Muxes := 11    
+	   4 Input      1 Bit        Muxes := 1     
+Module div_clk_module 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input      5 Bit       Adders := 2     
+Module generic_mux__parameterized2 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      4 Bit        Muxes := 1     
+Module generic_mux__parameterized3 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      4 Bit        Muxes := 1     
+Module generic_mux__parameterized4 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      4 Bit        Muxes := 1     
+Module generic_mux__parameterized5 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      4 Bit        Muxes := 1     
+Module generic_mux__parameterized6 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      4 Bit        Muxes := 1     
+Module generic_mux__parameterized7 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      4 Bit        Muxes := 1     
+Module generic_mux__parameterized8 
+Detailed RTL Component Info : 
++---Muxes : 
+	   2 Input      4 Bit        Muxes := 1     
+Module dec_to_7_seg 
+Detailed RTL Component Info : 
++---Muxes : 
+	  17 Input      7 Bit        Muxes := 1     
+Module an_gen 
+Detailed RTL Component Info : 
++---XORs : 
+	   2 Input      8 Bit         XORs := 1     
++---Muxes : 
+	   2 Input      8 Bit        Muxes := 1     
+---------------------------------------------------------------------------------
+Finished RTL Hierarchical Component Statistics
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+Start Parallel Synthesis Optimization  : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1432.621 ; gain = 545.090 ; free physical = 125 ; free virtual = 12002
+---------------------------------------------------------------------------------
+Start Cross Boundary Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-5546] ROM "rst_bytes_counter" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "next_state" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5545] ROM "next_state" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "response_4_w" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "next_state" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "next_state" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "next_state" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5546] ROM "next_state" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "next_state" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "next_state" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5545] ROM "next_state" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "next_state" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5546] ROM "next_state" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5545] ROM "next_state" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "rst_counter" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "up_counter" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5546] ROM "spi_in_internal_signal_w" won't be mapped to RAM because it is too sparse
+WARNING: [Synth 8-3331] design spi_master has unconnected port clk_spi
+WARNING: [Synth 8-3331] design fsm_autotest has unconnected port spi_err
+WARNING: [Synth 8-3331] design fsm_autotest has unconnected port spi_crc_err
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[15]
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[14]
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[13]
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[12]
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[11]
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[10]
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[9]
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[8]
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[7]
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[6]
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[5]
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[4]
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[3]
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[2]
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[1]
+WARNING: [Synth 8-3331] design top has unconnected port switch_i[0]
+---------------------------------------------------------------------------------
+Finished Cross Boundary Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1432.621 ; gain = 545.090 ; free physical = 127 ; free virtual = 11987
+---------------------------------------------------------------------------------
+Finished Parallel Reinference  : Time (s): cpu = 00:00:18 ; elapsed = 00:00:18 . Memory (MB): peak = 1432.621 ; gain = 545.090 ; free physical = 127 ; free virtual = 11987
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+
+ROM:
++------------+-------------------+---------------+----------------+
+|Module Name | RTL Object        | Depth x Width | Implemented As | 
++------------+-------------------+---------------+----------------+
+|sdspihost   | command_5_w       | 32x1          | LUT            | 
+|sdspihost   | r_state_prev_w    | 32x1          | LUT            | 
+|sdspihost   | spi_input_mux_ctl | 32x1          | LUT            | 
+|sdspihost   | r_state_prev_w    | 32x1          | LUT            | 
+|sdspihost   | spi_input_mux_ctl | 32x1          | LUT            | 
+|sdspihost   | command_5_w       | 32x1          | LUT            | 
++------------+-------------------+---------------+----------------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP and Shift Register Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Area Optimization
+---------------------------------------------------------------------------------
+INFO: [Synth 8-3886] merging instance 'autotest_inst/sdspi_inst/r_command_0/dout_reg[5]' (FDRE) to 'autotest_inst/sdspi_inst/r_command_0/dout_reg[3]'
+INFO: [Synth 8-3886] merging instance 'autotest_inst/sdspi_inst/r_command_0/dout_reg[0]' (FDRE) to 'autotest_inst/sdspi_inst/r_command_5/dout_reg[6]'
+INFO: [Synth 8-3886] merging instance 'autotest_inst/sdspi_inst/r_command_0/dout_reg[2]' (FDRE) to 'autotest_inst/sdspi_inst/r_command_0/dout_reg[7]'
+INFO: [Synth 8-3886] merging instance 'autotest_inst/sdspi_inst/r_command_0/dout_reg[3]' (FDRE) to 'autotest_inst/sdspi_inst/r_command_0/dout_reg[6]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\autotest_inst/fsm_isnt /\reg_seg_7/dout_reg[7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\autotest_inst/fsm_isnt /\reg_seg_6/dout_reg[7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\autotest_inst/fsm_isnt /\reg_seg_5/dout_reg[7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\autotest_inst/fsm_isnt /\reg_seg_4/dout_reg[7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\autotest_inst/fsm_isnt /\reg_seg_3/dout_reg[7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\autotest_inst/fsm_isnt /\reg_seg_2/dout_reg[7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\autotest_inst/fsm_isnt /\reg_seg_1/dout_reg[7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\autotest_inst/fsm_isnt /\reg_seg_0/dout_reg[7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\autotest_inst/sdspi_inst /\spi_module/sclk_cl_reg )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\autotest_inst/sdspi_inst /r_multi_block_prev_reg)
+WARNING: [Synth 8-3332] Sequential element (reg_seg_0/dout_reg[7]) is unused and will be removed from module fsm_autotest.
+WARNING: [Synth 8-3332] Sequential element (reg_seg_1/dout_reg[7]) is unused and will be removed from module fsm_autotest.
+WARNING: [Synth 8-3332] Sequential element (reg_seg_2/dout_reg[7]) is unused and will be removed from module fsm_autotest.
+WARNING: [Synth 8-3332] Sequential element (reg_seg_3/dout_reg[7]) is unused and will be removed from module fsm_autotest.
+WARNING: [Synth 8-3332] Sequential element (reg_seg_4/dout_reg[7]) is unused and will be removed from module fsm_autotest.
+WARNING: [Synth 8-3332] Sequential element (reg_seg_5/dout_reg[7]) is unused and will be removed from module fsm_autotest.
+WARNING: [Synth 8-3332] Sequential element (reg_seg_6/dout_reg[7]) is unused and will be removed from module fsm_autotest.
+WARNING: [Synth 8-3332] Sequential element (reg_seg_7/dout_reg[7]) is unused and will be removed from module fsm_autotest.
+WARNING: [Synth 8-3332] Sequential element (spi_module/sclk_cl_reg) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (spi_module/reg_data_input/dout_reg[7]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (spi_module/reg_data_input/dout_reg[6]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (spi_module/reg_data_input/dout_reg[5]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_0/dout_reg[7]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_0/dout_reg[6]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_0/dout_reg[5]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_0/dout_reg[4]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_0/dout_reg[3]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_0/dout_reg[2]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_0/dout_reg[1]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_0/dout_reg[0]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_1/dout_reg[7]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_1/dout_reg[6]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_1/dout_reg[5]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_1/dout_reg[4]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_1/dout_reg[3]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_1/dout_reg[2]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_1/dout_reg[1]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_1/dout_reg[0]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_2/dout_reg[7]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_2/dout_reg[6]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_2/dout_reg[5]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_2/dout_reg[4]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_2/dout_reg[3]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_2/dout_reg[2]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_2/dout_reg[1]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_2/dout_reg[0]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_3/dout_reg[7]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_3/dout_reg[6]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_3/dout_reg[5]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_3/dout_reg[4]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_3/dout_reg[3]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_3/dout_reg[2]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_3/dout_reg[1]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (sdcmd_module/r_response_3/dout_reg[0]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (r_command_0/dout_reg[5]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (r_command_0/dout_reg[3]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (r_command_0/dout_reg[2]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (crc_err_reg/dout_reg[0]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (r_multi_block_prev_reg) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (r_command_0/dout_reg[0]) is unused and will be removed from module sdspihost.
+WARNING: [Synth 8-3332] Sequential element (autotest_inst/div_clk_counter/q_reg[18]) is unused and will be removed from module top.
+WARNING: [Synth 8-3332] Sequential element (autotest_inst/div_clk_counter/q_reg[19]) is unused and will be removed from module top.
+WARNING: [Synth 8-3332] Sequential element (autotest_inst/div_clk_counter/q_reg[20]) is unused and will be removed from module top.
+WARNING: [Synth 8-3332] Sequential element (autotest_inst/div_clk_counter/q_reg[21]) is unused and will be removed from module top.
+WARNING: [Synth 8-3332] Sequential element (autotest_inst/div_clk_counter/q_reg[22]) is unused and will be removed from module top.
+WARNING: [Synth 8-3332] Sequential element (autotest_inst/div_clk_counter/q_reg[23]) is unused and will be removed from module top.
+WARNING: [Synth 8-3332] Sequential element (autotest_inst/div_clk_counter/q_reg[24]) is unused and will be removed from module top.
+WARNING: [Synth 8-3332] Sequential element (autotest_inst/div_clk_counter/q_reg[25]) is unused and will be removed from module top.
+WARNING: [Synth 8-3332] Sequential element (autotest_inst/div_clk_counter/q_reg[26]) is unused and will be removed from module top.
+WARNING: [Synth 8-3332] Sequential element (autotest_inst/div_clk_counter/q_reg[27]) is unused and will be removed from module top.
+WARNING: [Synth 8-3332] Sequential element (autotest_inst/div_clk_counter/q_reg[28]) is unused and will be removed from module top.
+WARNING: [Synth 8-3332] Sequential element (autotest_inst/div_clk_counter/q_reg[29]) is unused and will be removed from module top.
+WARNING: [Synth 8-3332] Sequential element (autotest_inst/div_clk_counter/q_reg[30]) is unused and will be removed from module top.
+WARNING: [Synth 8-3332] Sequential element (autotest_inst/div_clk_counter/q_reg[31]) is unused and will be removed from module top.
+WARNING: [Synth 8-3332] Sequential element (display_inst/div_clk_module_inst/div_clk_counter/q_reg[21]) is unused and will be removed from module top.
+WARNING: [Synth 8-3332] Sequential element (display_inst/div_clk_module_inst/div_clk_counter/q_reg[22]) is unused and will be removed from module top.
+WARNING: [Synth 8-3332] Sequential element (display_inst/div_clk_module_inst/div_clk_counter/q_reg[23]) is unused and will be removed from module top.
+WARNING: [Synth 8-3332] Sequential element (display_inst/div_clk_module_inst/div_clk_counter/q_reg[24]) is unused and will be removed from module top.
+WARNING: [Synth 8-3332] Sequential element (display_inst/div_clk_module_inst/div_clk_counter/q_reg[25]) is unused and will be removed from module top.
+WARNING: [Synth 8-3332] Sequential element (display_inst/div_clk_module_inst/div_clk_counter/q_reg[26]) is unused and will be removed from module top.
+WARNING: [Synth 8-3332] Sequential element (display_inst/div_clk_module_inst/div_clk_counter/q_reg[27]) is unused and will be removed from module top.
+WARNING: [Synth 8-3332] Sequential element (display_inst/div_clk_module_inst/div_clk_counter/q_reg[28]) is unused and will be removed from module top.
+WARNING: [Synth 8-3332] Sequential element (display_inst/div_clk_module_inst/div_clk_counter/q_reg[29]) is unused and will be removed from module top.
+WARNING: [Synth 8-3332] Sequential element (display_inst/div_clk_module_inst/div_clk_counter/q_reg[30]) is unused and will be removed from module top.
+WARNING: [Synth 8-3332] Sequential element (display_inst/div_clk_module_inst/div_clk_counter/q_reg[31]) is unused and will be removed from module top.
+INFO: [Synth 8-3886] merging instance 'autotest_inst/sdspi_inst/r_command_0/dout_reg[6]' (FDRE) to 'autotest_inst/sdspi_inst/r_command_5/dout_reg[7]'
+WARNING: [Synth 8-3332] Sequential element (r_command_0/dout_reg[6]) is unused and will be removed from module sdspihost.
+---------------------------------------------------------------------------------
+Finished Area Optimization : Time (s): cpu = 00:00:22 ; elapsed = 00:00:22 . Memory (MB): peak = 1432.621 ; gain = 545.090 ; free physical = 124 ; free virtual = 11985
+---------------------------------------------------------------------------------
+Finished Parallel Area Optimization  : Time (s): cpu = 00:00:22 ; elapsed = 00:00:22 . Memory (MB): peak = 1432.621 ; gain = 545.090 ; free physical = 124 ; free virtual = 11985
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1432.621 ; gain = 545.090 ; free physical = 121 ; free virtual = 11943
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:30 ; elapsed = 00:00:30 . Memory (MB): peak = 1441.621 ; gain = 554.090 ; free physical = 123 ; free virtual = 11924
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1459.645 ; gain = 572.113 ; free physical = 116 ; free virtual = 11907
+---------------------------------------------------------------------------------
+Finished Parallel Technology Mapping Optimization  : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1459.645 ; gain = 572.113 ; free physical = 116 ; free virtual = 11907
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+Finished Parallel Synthesis Optimization  : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1459.645 ; gain = 572.113 ; free physical = 116 ; free virtual = 11907
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:31 ; elapsed = 00:00:31 . Memory (MB): peak = 1459.645 ; gain = 572.113 ; free physical = 116 ; free virtual = 11907
+---------------------------------------------------------------------------------
+
+Report Check Netlist: 
++------+------------------+-------+---------+-------+------------------+
+|      |Item              |Errors |Warnings |Status |Description       |
++------+------------------+-------+---------+-------+------------------+
+|1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
++------+------------------+-------+---------+-------+------------------+
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:31 ; elapsed = 00:00:31 . Memory (MB): peak = 1459.645 ; gain = 572.113 ; free physical = 116 ; free virtual = 11907
+---------------------------------------------------------------------------------
+
+Report RTL Partitions: 
++-+--------------+------------+----------+
+| |RTL Partition |Replication |Instances |
++-+--------------+------------+----------+
++-+--------------+------------+----------+
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:31 ; elapsed = 00:00:31 . Memory (MB): peak = 1459.645 ; gain = 572.113 ; free physical = 116 ; free virtual = 11907
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:31 ; elapsed = 00:00:31 . Memory (MB): peak = 1459.645 ; gain = 572.113 ; free physical = 116 ; free virtual = 11907
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 1459.645 ; gain = 572.113 ; free physical = 116 ; free virtual = 11907
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 1459.645 ; gain = 572.113 ; free physical = 116 ; free virtual = 11907
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-------+------+
+|      |Cell   |Count |
++------+-------+------+
+|1     |BUFG   |     3|
+|2     |CARRY4 |    79|
+|3     |LUT1   |   308|
+|4     |LUT2   |    36|
+|5     |LUT3   |    33|
+|6     |LUT4   |   106|
+|7     |LUT5   |   117|
+|8     |LUT6   |   212|
+|9     |MUXF7  |    23|
+|10    |FDRE   |   571|
+|11    |FDSE   |     2|
+|12    |IBUF   |     3|
+|13    |OBUF   |    37|
++------+-------+------+
+
+Report Instance Areas: 
++------+---------------------------+-------------------------+------+
+|      |Instance                   |Module                   |Cells |
++------+---------------------------+-------------------------+------+
+|1     |top                        |                         |  1530|
+|2     |  autotest_inst            |autotest_module          |  1430|
+|3     |    div_clk_counter        |contador_up_0            |    41|
+|4     |    fsm_isnt               |fsm_autotest             |   649|
+|5     |      counter_block        |contador_up_18           |    89|
+|6     |      counter_bytes        |contador_up_19           |   180|
+|7     |      counter_divclk       |contador_up_20           |    84|
+|8     |      counter_timer        |contador_up_21           |    87|
+|9     |      reg_din_0            |registro_22              |    12|
+|10    |      reg_din_1            |registro_23              |     8|
+|11    |      reg_din_2            |registro_24              |    23|
+|12    |      reg_din_3            |registro_25              |     8|
+|13    |      reg_seg_0            |registro_26              |     7|
+|14    |      reg_seg_1            |registro_27              |     7|
+|15    |      reg_seg_2            |registro_28              |     7|
+|16    |      reg_seg_3            |registro_29              |     7|
+|17    |      reg_seg_4            |registro_30              |     7|
+|18    |      reg_seg_5            |registro_31              |     7|
+|19    |      reg_seg_6            |registro_32              |     7|
+|20    |      reg_seg_7            |registro_33              |     7|
+|21    |      reg_signature_0      |registro_34              |     9|
+|22    |      reg_signature_1      |registro_35              |    11|
+|23    |      reg_signature_2      |registro_36              |     9|
+|24    |      reg_signature_3      |registro_37              |    11|
+|25    |      reg_spi_data         |registro_38              |    11|
+|26    |    sdspi_inst             |sdspihost                |   726|
+|27    |      counter_wait         |contador_up_1            |   156|
+|28    |      r_command_0          |registro                 |     6|
+|29    |      r_command_1          |registro_2               |    16|
+|30    |      r_command_2          |registro_3               |    16|
+|31    |      r_command_3          |registro_4               |    16|
+|32    |      r_command_4          |registro_5               |    17|
+|33    |      r_command_5          |registro_6               |    18|
+|34    |      r_state_prev_0       |registro_7               |    21|
+|35    |      reg_spi_internal     |registro_8               |    14|
+|36    |      sdcmd_module         |sdcmd                    |   190|
+|37    |        counter            |contador_up_13           |   119|
+|38    |        r_response_4       |registro_14              |    31|
+|39    |        r_spi_in_sdcmd_out |registro_15              |    14|
+|40    |        r_spi_out_sdcmd_in |registro_16              |    15|
+|41    |        r_state_prev_0     |registro_17              |     3|
+|42    |      spi_module           |spi_master               |   234|
+|43    |        counter_data       |contador_up_9            |    82|
+|44    |        counter_sclk       |contador_up_10           |    89|
+|45    |        master_in_reg      |registro_desp            |    23|
+|46    |        master_out_reg     |registro_desp_11         |    17|
+|47    |        reg_data_input     |registro_12              |     5|
+|48    |        sclk_register      |registro__parameterized0 |     1|
+|49    |  display_inst             |display                  |    57|
+|50    |    div_clk_module_inst    |div_clk_module           |    57|
+|51    |      div_clk_counter      |contador_up              |    57|
++------+---------------------------+-------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 1459.645 ; gain = 572.113 ; free physical = 116 ; free virtual = 11907
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 95 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 1459.645 ; gain = 136.457 ; free physical = 115 ; free virtual = 11906
+Synthesis Optimization Complete : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 1459.652 ; gain = 572.121 ; free physical = 115 ; free virtual = 11906
+INFO: [Project 1-571] Translating synthesized netlist
+INFO: [Netlist 29-17] Analyzing 82 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Common 17-83] Releasing license: Synthesis
+148 Infos, 184 Warnings, 28 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:30 ; elapsed = 00:00:30 . Memory (MB): peak = 1459.652 ; gain = 497.566 ; free physical = 142 ; free virtual = 11911
+report_utilization: Time (s): cpu = 00:00:00.11 ; elapsed = 00:00:00.13 . Memory (MB): peak = 1491.660 ; gain = 0.000 ; free physical = 140 ; free virtual = 11909
+INFO: [Common 17-206] Exiting Vivado at Tue Mar  5 15:12:15 2019...

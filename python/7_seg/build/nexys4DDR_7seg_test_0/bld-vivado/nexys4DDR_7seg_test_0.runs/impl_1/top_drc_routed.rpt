@@ -1,0 +1,48 @@
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
+| Date         : Tue Mar  5 15:13:06 2019
+| Host         : german-H61M-D2H-USB3 running 64-bit Ubuntu 16.04.5 LTS
+| Command      : report_drc -file top_drc_routed.rpt -pb top_drc_routed.pb
+| Design       : top
+| Device       : xc7a100tcsg324-2
+| Speed File   : -2
+------------------------------------------------------------------------------------
+
+Report DRC
+
+Table of Contents
+-----------------
+1. REPORT SUMMARY
+2. REPORT DETAILS
+
+1. REPORT SUMMARY
+-----------------
+            Netlist: netlist
+          Floorplan: design_1
+      Design limits: <entire design considered>
+           Ruledeck: default
+             Max violations: <unlimited>
+             Violations found: 2
+
+2. REPORT DETAILS
+-----------------
+CFGBVS-1#1 Warning
+Missing CFGBVS and CONFIG_VOLTAGE Design Properties  
+Neither the CFGBVS nor CONFIG_VOLTAGE voltage property is set in the current_design.  Configuration bank voltage select (CFGBVS) must be set to VCCO or GND, and CONFIG_VOLTAGE must be set to the correct configuration voltage, in order to determine the I/O voltage support for the pins in bank 0.  It is suggested to specify these either using the 'Edit Device Properties' function in the GUI or directly in the XDC file using the following syntax:
+
+ set_property CFGBVS value1 [current_design]
+ #where value1 is either VCCO or GND
+
+ set_property CONFIG_VOLTAGE value2 [current_design]
+ #where value2 is the voltage provided to configuration bank 0
+
+Refer to the device configuration user guide for more information.
+Related violations: <none>
+
+PLIO-7#1 Warning
+Placement Constraints Check for IO constraints  
+An IO Bus switch_i[15:0] with more than one IO standard is found. Components associated with this bus are: LVCMOS18 (switch_i[9], switch_i[8]); LVCMOS33 (switch_i[15], switch_i[14], switch_i[13], switch_i[12], switch_i[11], switch_i[10], switch_i[7], switch_i[6], switch_i[5], switch_i[4], switch_i[3], switch_i[2], switch_i[1], switch_i[0]); 
+Related violations: <none>
+
+
