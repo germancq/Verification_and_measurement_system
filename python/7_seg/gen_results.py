@@ -3,7 +3,7 @@
 # @Email:  germancq@dte.us.es
 # @Filename: gen_results.py
 # @Last modified by:   germancq
-# @Last modified time: 2019-03-05T15:27:15+01:00
+# @Last modified time: 2019-03-05T17:41:50+01:00
 
 import sys
 import os
@@ -67,16 +67,17 @@ def din_7_seg(din,n):
 
 def write_params(sheet1, params , i):
     calc_data_in = calculated_data_in(params)
-    din_0 = din_7_seg(params[1],0)    
+    din_0 = din_7_seg(params[1],0)
     expected_seg = digit_to_7_seg(din_0)
     if(calc_data_in == params[1]):
-        return
+        return i
 
     sheet1.write(i,1,hex(params[1]))
     sheet1.write(i,2,hex(calc_data_in))
     sheet1.write(i,3,hex(expected_seg))
     for k in range(0,8):
         sheet1.write(i,k+4,hex(params[k+2]))
+    return i+1
 
 def gen_calc(micro_sd):
     wb = xlwt.Workbook()
@@ -89,8 +90,7 @@ def gen_calc(micro_sd):
         print(params[0])
         if params[0] != SIGNATURE:
             break
-        i = i+1
-        write_params(sheet1,params,i)
+        i = write_params(sheet1,params,i)
 
 
     wb.save('test_7_seg.xls')
