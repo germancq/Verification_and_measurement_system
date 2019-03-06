@@ -4,7 +4,7 @@
  * @Email:  germancq@dte.us.es
  * @Filename: fsm_autotest.v
  * @Last modified by:   germancq
- * @Last modified time: 2019-03-06T18:54:12+01:00
+ * @Last modified time: 2019-03-06T19:34:49+01:00
  */
 
  module fsm_autotest(
@@ -25,12 +25,15 @@
      output reg spi_w_byte,
      input spi_crc_err,
      //uut ctrl signals
-     output reg display_rst,
+     output reg sdspi_ctrl_mux,
+     output reg sdspi_rst,
+     output reg sdspi_start,
      //uut paramters signals
-     output [31:0] display_din,
+     output [31:0] sdspi_n_blocks,
+     output [4:0] sdspi_sclk_speed,
+     output sdspi_cmd18,
      //uut results signals
-     input [7:0] display_an,
-     input [6:0] display_seg,
+     input sdspi_finish,
      //debug
      output [31:0] debug_signal
      );
@@ -95,7 +98,7 @@ assign debug_signal = current_state;
 //////////uut specific registers///////////////////////
   /////////////data_in////////////////
   wire [7:0] din_0,din_1,din_2,din_3;
-  assign display_din = {din_0,din_1,din_2,din_3};
+  assign sdspi_n_blocks = {din_0,din_1,din_2,din_3};
   reg reg_din_0_cl;
   reg reg_din_0_w;
   registro reg_din_0(
@@ -132,88 +135,30 @@ assign debug_signal = current_state;
   	.din(spi_data_out),
   	.dout(din_3)
   );
-  //////////////seg_outputs////////////
-  wire[7:0] seg_o_0;
-  reg reg_seg_0_cl;
-  reg reg_seg_0_w;
-  registro reg_seg_0(
+  //////////////sclk_speed_outputs////////////
+  assign sdspi_sclk_speed = reg_sclk_speed_o[4:0];
+  wire[7:0] reg_sclk_speed_o;
+  reg reg_sclk_speed_cl;
+  reg reg_sclk_speed_w;
+  registro reg_sclk_speed(
   	.clk(clk),
-  	.cl(reg_seg_0_cl),
-  	.w(~display_an[0]),
-  	.din(display_seg),
-  	.dout(seg_o_0)
+  	.cl(reg_sclk_speed_cl),
+  	.w(reg_sclk_speed_w),
+  	.din(spi_data_out),
+  	.dout(reg_sclk_speed_o)
   );
-  wire[7:0] seg_o_1;
-  reg reg_seg_1_cl;
-  reg reg_seg_1_w;
-  registro reg_seg_1(
-  	.clk(clk),
-  	.cl(reg_seg_1_cl),
-  	.w(~display_an[1]),
-  	.din(display_seg),
-  	.dout(seg_o_1)
+  //////////////cmd18_outputs////////////
+  assign sdspi_cmd18 = reg_cmd18_o[0];
+  wire[7:0] reg_cmd18_o;
+  reg reg_cmd18_cl;
+  reg reg_cmd18_w;
+  registro reg_cmd18(
+    .clk(clk),
+    .cl(reg_cmd18_cl),
+    .w(reg_cmd18_w),
+    .din(spi_data_out),
+    .dout(reg_cmd18_o)
   );
-  wire[7:0] seg_o_2;
-  reg reg_seg_2_cl;
-  reg reg_seg_2_w;
-  registro reg_seg_2(
-  	.clk(clk),
-  	.cl(reg_seg_2_cl),
-  	.w(~display_an[2]),
-  	.din(display_seg),
-  	.dout(seg_o_2)
-  );
-  wire[7:0] seg_o_3;
-  reg reg_seg_3_cl;
-  reg reg_seg_3_w;
-  registro reg_seg_3(
-  	.clk(clk),
-  	.cl(reg_seg_3_cl),
-  	.w(~display_an[3]),
-  	.din(display_seg),
-  	.dout(seg_o_3)
-  );
-  wire[7:0] seg_o_4;
-  reg reg_seg_4_cl;
-  reg reg_seg_4_w;
-  registro reg_seg_4(
-  	.clk(clk),
-  	.cl(reg_seg_4_cl),
-  	.w(~display_an[4]),
-  	.din(display_seg),
-  	.dout(seg_o_4)
-  );
-  wire[7:0] seg_o_5;
-  reg reg_seg_5_cl;
-  reg reg_seg_5_w;
-  registro reg_seg_5(
-  	.clk(clk),
-  	.cl(reg_seg_5_cl),
-  	.w(~display_an[5]),
-  	.din(display_seg),
-  	.dout(seg_o_5)
-  );
-  wire[7:0] seg_o_6;
-  reg reg_seg_6_cl;
-  reg reg_seg_6_w;
-  registro reg_seg_6(
-  	.clk(clk),
-  	.cl(reg_seg_6_cl),
-  	.w(~display_an[6]),
-  	.din(display_seg),
-  	.dout(seg_o_6)
-  );
-  wire[7:0] seg_o_7;
-  reg reg_seg_7_cl;
-  reg reg_seg_7_w;
-  registro reg_seg_7(
-  	.clk(clk),
-  	.cl(reg_seg_7_cl),
-  	.w(~display_an[7]),
-  	.din(display_seg),
-  	.dout(seg_o_7)
-  );
-
 ///////////////timer//////////////////////
  reg up_timer_counter;
  wire [31:0] counter_timer_o;
@@ -297,7 +242,9 @@ assign debug_signal = current_state;
      spi_w_byte = 0;
 
 
-     display_rst = 0;
+     sdspi_ctrl_mux = 0;
+     sdspi_rst = 0;
+     sdspi_start = 0;
 
      reg_signature_data_0_cl = 0;
      reg_signature_data_0_w = 0;
@@ -318,22 +265,11 @@ assign debug_signal = current_state;
      reg_din_3_w = 0;
 
 
-     reg_seg_0_cl = 0;
-     reg_seg_0_w = 0;
-     reg_seg_1_cl = 0;
-     reg_seg_1_w = 0;
-     reg_seg_2_cl = 0;
-     reg_seg_2_w = 0;
-     reg_seg_3_cl = 0;
-     reg_seg_3_w = 0;
-     reg_seg_4_cl = 0;
-     reg_seg_4_w = 0;
-     reg_seg_5_cl = 0;
-     reg_seg_5_w = 0;
-     reg_seg_6_cl = 0;
-     reg_seg_6_w = 0;
-     reg_seg_7_cl = 0;
-     reg_seg_7_w = 0;
+     reg_sclk_speed_cl = 0;
+     reg_sclk_speed_w = 0;
+     reg_cmd18_cl = 0;
+     reg_cmd18_w = 0;
+
 
 
      reg_spi_data_cl = 0;
@@ -348,7 +284,7 @@ assign debug_signal = current_state;
                  //rst_block_counter = 1;
                  rst_bytes_counter = 1;
 
-                 display_rst = 1;
+                 sdspi_rst = 1;
 
                  reg_signature_data_0_cl = 1;
                  reg_signature_data_1_cl = 1;
@@ -360,14 +296,9 @@ assign debug_signal = current_state;
                  reg_din_2_cl = 1;
                  reg_din_3_cl = 1;
 
-                 reg_seg_0_cl = 1;
-                 reg_seg_1_cl = 1;
-                 reg_seg_2_cl = 1;
-                 reg_seg_3_cl = 1;
-                 reg_seg_4_cl = 1;
-                 reg_seg_5_cl = 1;
-                 reg_seg_6_cl = 1;
-                 reg_seg_7_cl = 1;
+                 reg_sclk_speed_cl = 1;
+                 reg_cmd18_cl = 1;
+
 
                  reg_spi_data_cl = 1;
 
@@ -375,35 +306,35 @@ assign debug_signal = current_state;
              end
          BEGIN_READ_FROM_SD:
              begin
-                 display_rst = 1;
+                 sdspi_rst = 1;
                  spi_rst = 1;
                  if(spi_busy == 1'b1)
                      next_state = WAIT_RST_SPI;
              end
          WAIT_RST_SPI:
              begin
-                 display_rst = 1;
+                 sdspi_rst = 1;
                  if(spi_busy == 1'b0)
                      next_state = SEL_SD_BLOCK;
 
              end
          SEL_SD_BLOCK:
              begin
-                 display_rst = 1;
+                 sdspi_rst = 1;
                  spi_r_block = 1;
                  if(spi_busy == 1)
                      next_state = WAIT_BLOCK;
              end
          WAIT_BLOCK:
              begin
-                 display_rst = 1;
+                 sdspi_rst = 1;
      		         spi_r_block = 1;
      		         if(spi_busy == 1'b0)
                          next_state = READ_DATA;
              end
          READ_DATA:
              begin
-                 display_rst = 1;
+                 sdspi_rst = 1;
  		             spi_r_block = 1;
 
                  next_state = READ_BYTE;
@@ -416,6 +347,8 @@ assign debug_signal = current_state;
                    32'h5:reg_din_1_w = 1;
                    32'h6:reg_din_2_w = 1;
                    32'h7:reg_din_3_w = 1;
+                   32'h8:reg_sclk_speed_w = 1;
+                   32'h9:reg_cmd18_w = 1;
                    default:
                      begin
                          next_state = CHECK_SIGNATURE;
@@ -424,7 +357,7 @@ assign debug_signal = current_state;
              end
          READ_BYTE:
              begin
-                 display_rst = 1;
+                 sdspi_rst = 1;
                  spi_r_block = 1;
                  spi_r_byte = 1;
 
@@ -437,7 +370,7 @@ assign debug_signal = current_state;
              end
          WAIT_BYTE:
              begin
-                 display_rst = 1;
+                 sdspi_rst = 1;
                  spi_r_block = 1;
                  if(spi_busy == 1'b0)
                  begin
@@ -446,7 +379,7 @@ assign debug_signal = current_state;
              end
          CHECK_SIGNATURE:
              begin
-               display_rst = 1;
+               sdspi_ctrl_mux = 1;
                if(signature == 32'hAABBCCDD && counter_divclk_o > 8'h10)
                begin
                  next_state = START_TEST;
@@ -456,12 +389,16 @@ assign debug_signal = current_state;
              end
           START_TEST:
              begin
+               sdspi_ctrl_mux = 1;
+               sdspi_start = 1;
                next_state = WAIT_UNTIL_END_TEST_OR_TIMEOUT;
              end
           WAIT_UNTIL_END_TEST_OR_TIMEOUT:
              begin
+               sdspi_ctrl_mux = 1;
+               sdspi_start = 1;
                up_timer_counter = 1;
-               if(display_an[7]==0)
+               if(sdspi_finish==1)
                  next_state = END_TEST;
                else if(counter_timer_o >= 32'h6E00000)
                  next_state = END_TEST;
@@ -469,7 +406,7 @@ assign debug_signal = current_state;
              end
           END_TEST:
              begin
-
+               sdspi_ctrl_mux = 1;
                rst_bytes_counter = 1;
                if(spi_busy == 1'b0)
                    next_state = SEL_WRITE_SD_BLOCK;
@@ -504,14 +441,12 @@ assign debug_signal = current_state;
                    32'h5: reg_spi_data_in = din_1;
                    32'h6: reg_spi_data_in = din_2;
                    32'h7: reg_spi_data_in = din_3;
-                   32'h8: reg_spi_data_in = seg_o_0;
-                   32'h9: reg_spi_data_in = seg_o_1;
-                   32'ha: reg_spi_data_in = seg_o_2;
-                   32'hb: reg_spi_data_in = seg_o_3;
-                   32'hc: reg_spi_data_in = seg_o_4;
-                   32'hd: reg_spi_data_in = seg_o_5;
-                   32'he: reg_spi_data_in = seg_o_6;
-                   32'hf: reg_spi_data_in = seg_o_7;
+                   32'h8: reg_spi_data_in = reg_sclk_speed_o;
+                   32'h9: reg_spi_data_in = reg_cmd18_o;
+                   32'ha: reg_spi_data_in = counter_timer_o[31:24];
+                   32'hb: reg_spi_data_in = counter_timer_o[23:16];
+                   32'hc: reg_spi_data_in = counter_timer_o[15:8];
+                   32'hd: reg_spi_data_in = counter_timer_o[7:0];
                    32'h203:
                      begin
                          next_state = UPDATE_BLOCK_COUNTER;
@@ -532,7 +467,7 @@ assign debug_signal = current_state;
           UPDATE_BLOCK_COUNTER:
              begin
 
-                 display_rst = 1;
+                 sdspi_rst = 1;
                  rst_timer_counter = 1;
                  up_bytes_counter = 1;
 

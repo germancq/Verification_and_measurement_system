@@ -1,0 +1,17 @@
+CAPI=1
+[fileset src_files]
+files = data/Nexys4DDR_Master.xdc
+file_type = xdc
+
+[verilog]
+src_files =
+ rtl/verilog/top.v
+ rtl/verilog/misc/contador_up.v
+ rtl/verilog/misc/genericMux.v
+ rtl/verilog/misc/registro_desp.v
+ rtl/verilog/misc/registro.v
+ rtl/verilog/autotest_module/autotest_module.v
+ rtl/verilog/autotest_module/fsm_autotest.v
+ rtl/verilog/autotest_module/sdspi/sdspihost.v
+ rtl/verilog/autotest_module/sdspi/sdcmd.v
+ rtl/verilog/autotest_module/sdspi/spi_master.v
