@@ -10,6 +10,7 @@ src_files =
  rtl/verilog/misc/genericMux.v
  rtl/verilog/misc/registro_desp.v
  rtl/verilog/misc/registro.v
+ rtl/verilog/sdspi_system/sdspi_system.v
  rtl/verilog/autotest_module/autotest_module.v
  rtl/verilog/autotest_module/fsm_autotest.v
  rtl/verilog/autotest_module/sdspi/sdspihost.v

@@ -4,7 +4,7 @@
  * @Email:  germancq@dte.us.es
  * @Filename: sdspi_system.v
  * @Last modified by:   germancq
- * @Last modified time: 2019-03-06T18:29:39+01:00
+ * @Last modified time: 2019-03-07T12:53:15+01:00
  */
 module sdspi_system(
   input clk,
@@ -30,7 +30,7 @@ module sdspi_system(
   );
 
   reg spi_rst;
-  reg spi_busy;
+  wire spi_busy;
   reg spi_r_byte;
   reg spi_r_multi_block;
   reg spi_r_block;
@@ -82,16 +82,13 @@ module sdspi_system(
 
 
 wire [31:0] counter_addr_o;
-reg counter_addr_cl;
+reg counter_addr_rst;
 reg counter_addr_up;
-reg counter_addr_w;
 assign spi_block_addr = counter_addr_o;
-counter_load counter_addr(
+contador_up counter_addr(
   .clk(clk),
-  .cl(counter_addr_cl),
+  .rst(counter_addr_rst),
   .up(counter_addr_up),
-  .w(counter_addr_w),
-  .d(32'h0),
   .q(counter_addr_o)
   );
 
@@ -109,16 +106,16 @@ contador_up counter_bytes(
 reg [3:0] current_state;
 reg [3:0] next_state;
 
-parameter IDLE = 0;
-parameter WAIT_RST_SPI = 1;
-parameter WAIT_FOR_SDSPI = 2;
-parameter SEL_SD_BLOCK = 3;
-parameter WAIT_BLOCK = 4;
-parameter READ_DATA = 5;
-parameter READ_BYTE = 6;
-parameter WAIT_BYTE = 7;
-parameter CHANGE_BLOCK = 8;
-parameter END_FSM = 9;
+parameter IDLE = 4'h0;
+parameter WAIT_RST_SPI = 4'h1;
+parameter WAIT_FOR_SDSPI = 4'h2;
+parameter SEL_SD_BLOCK = 4'h3;
+parameter WAIT_BLOCK = 4'h4;
+parameter READ_DATA = 4'h5;
+parameter READ_BYTE = 4'h6;
+parameter WAIT_BYTE = 4'h7;
+parameter CHANGE_BLOCK = 4'h8;
+parameter END_FSM = 4'h9;
 
 
 always @ ( * )
@@ -134,18 +131,17 @@ begin
   spi_r_multi_block = 1'b0;
   spi_r_byte = 1'b0;
 
-  counter_addr_cl = 1'b0;
+  counter_addr_rst = 1'b0;
   counter_addr_up = 1'b0;
-  counter_addr_w = 1'b0;
 
   counter_bytes_up = 1'b0;
   counter_bytes_rst = 1'b0;
 
-  case(current_state):
+  case(current_state)
     IDLE:
       begin
         spi_rst = 1'b1;
-        counter_addr_cl = 1'b1;
+        counter_addr_rst = 1'b1;
         if(start == 1)
           next_state = WAIT_RST_SPI;
       end
@@ -156,7 +152,6 @@ begin
       end
     WAIT_FOR_SDSPI:
       begin
-        counter_addr_w = 1'b1;
         if(spi_busy == 1'b0)
           next_state = SEL_SD_BLOCK;
       end

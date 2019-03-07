@@ -4,7 +4,7 @@
  * @Email:  germancq@dte.us.es
  * @Filename: fsm_autotest.v
  * @Last modified by:   germancq
- * @Last modified time: 2019-03-06T18:54:12+01:00
+ * @Last modified time: 2019-03-07T12:25:43+01:00
  */
 
  module fsm_autotest(
@@ -447,7 +447,7 @@ assign debug_signal = current_state;
          CHECK_SIGNATURE:
              begin
                display_rst = 1;
-               if(signature == 32'hAABBCCDD && counter_divclk_o > 8'h10)
+               if(signature == 32'hAABBCCDD)
                begin
                  next_state = START_TEST;
                end
