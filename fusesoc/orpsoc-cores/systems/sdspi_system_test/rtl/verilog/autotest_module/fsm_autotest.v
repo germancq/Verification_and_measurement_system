@@ -4,7 +4,7 @@
  * @Email:  germancq@dte.us.es
  * @Filename: fsm_autotest.v
  * @Last modified by:   germancq
- * @Last modified time: 2019-03-07T12:26:29+01:00
+ * @Last modified time: 2019-03-08T19:04:31+01:00
  */
 
  module fsm_autotest(
@@ -38,7 +38,7 @@
      output [31:0] debug_signal
      );
 
-assign debug_signal = current_state;
+assign debug_signal = {counter_block_o,3'h0,current_state};
 
  /////registro SPI ///////////////////
  reg reg_spi_data_cl;
@@ -399,17 +399,24 @@ assign debug_signal = current_state;
                sdspi_start = 1;
                up_timer_counter = 1;
                if(sdspi_finish==1)
+               begin
+                 rst_bytes_counter = 1;
                  next_state = END_TEST;
-               else if(counter_timer_o >= 32'h6E00000)
-                 next_state = END_TEST;
+               end
+               //else if(counter_timer_o >= 32'h6E00000)
+              //   next_state = END_TEST;
 
              end
           END_TEST:
              begin
                sdspi_ctrl_mux = 1;
-               rst_bytes_counter = 1;
-               if(spi_busy == 1'b0)
+               up_bytes_counter = 1;
+               //
+               if(spi_busy == 1'b0 && counter_bytes_o >32'hF0000)
+               begin
+                   rst_bytes_counter = 1;
                    next_state = SEL_WRITE_SD_BLOCK;
+               end
 
 
              end

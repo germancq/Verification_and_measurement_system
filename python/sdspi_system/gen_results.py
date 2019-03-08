@@ -3,7 +3,7 @@
 # @Email:  germancq@dte.us.es
 # @Filename: gen_results.py
 # @Last modified by:   germancq
-# @Last modified time: 2019-03-06T19:48:02+01:00
+# @Last modified time: 2019-03-08T12:44:55+01:00
 
 import sys
 import os
@@ -39,10 +39,11 @@ def get_clk_speed_from_factor(n, base_clk=100):
 
 def calculated_time_in_ms(time_units,base_clk=100,div_clk=7):
     clk_counter = get_clk_speed_from_factor(div_clk)
+    print ('time units is = %i' % time_units)
     #clk_counter in Mhz
     # 1/clk_counter = (1/clk_counterHz)* 10**(-6) s
-    period_in_ms = (1/(clk_counter / 10**3))
-    return time_units * period_in_ms
+    period_in_us = (1/(clk_counter))
+    return time_units * period_in_us * (10**(-3))
 
 def write_params(sheet1, params , i):
 
@@ -59,7 +60,7 @@ def gen_calc(micro_sd):
     sheet1 = wb.add_sheet("Hoja 1")
     create_fields(sheet1)
     valid_signature = 1
-    i = 0
+    i = 1
     while valid_signature == 1 :
         params = read_params_from_sd(sheet1,NUM_BLOCK_TEST+i,micro_sd)
         print(params[0])
@@ -77,4 +78,3 @@ def main():
 
 if __name__ == "__main__":
     main()
- main()
