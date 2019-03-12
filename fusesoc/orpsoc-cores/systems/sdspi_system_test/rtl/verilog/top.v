@@ -4,7 +4,7 @@
  * @Email:  germancq@dte.us.es
  * @Filename: top.v
  * @Last modified by:   germancq
- * @Last modified time: 2019-03-06T19:25:45+01:00
+ * @Last modified time: 2019-03-08T17:31:25+01:00
  */
 module top(
   input sys_clk_pad_i,
@@ -21,6 +21,11 @@ module top(
   output SD_DAT_1,
   output SD_DAT_2
 );
+
+  assign SD_RESET = 1'b0;
+  assign SD_DAT_1 = 1'b1;
+  assign SD_DAT_2 = 1'b1;
+
 
   wire cs_autotest;
   wire sclk_autotest;
@@ -109,24 +114,6 @@ module top(
     .a(cs_autotest),
    	.b(cs_uut),
    	.c(cs),
-   	.ctl(sdspi_ctrl_mux)
-  );
-  generic_mux #(.DATA_WIDTH(1)) mux_SD_RESET(
-    .a(SD_RESET_autotest),
-   	.b(SD_RESET_uut),
-   	.c(SD_RESET),
-   	.ctl(sdspi_ctrl_mux)
-  );
-  generic_mux #(.DATA_WIDTH(1)) mux_SD_DAT_1(
-    .a(SD_DAT_1_autotest),
-   	.b(SD_DAT_1_uut),
-   	.c(SD_DAT_1),
-   	.ctl(sdspi_ctrl_mux)
-  );
-  generic_mux #(.DATA_WIDTH(1)) mux_SD_DAT_2(
-    .a(SD_DAT_2_autotest),
-   	.b(SD_DAT_2_uut),
-   	.c(SD_DAT_2),
    	.ctl(sdspi_ctrl_mux)
   );
 

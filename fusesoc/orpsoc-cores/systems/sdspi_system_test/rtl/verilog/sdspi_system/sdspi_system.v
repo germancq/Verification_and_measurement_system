@@ -4,7 +4,7 @@
  * @Email:  germancq@dte.us.es
  * @Filename: sdspi_system.v
  * @Last modified by:   germancq
- * @Last modified time: 2019-03-07T12:53:15+01:00
+ * @Last modified time: 2019-03-08T15:27:09+01:00
  */
 module sdspi_system(
   input clk,
@@ -212,7 +212,7 @@ begin
       begin
         spi_r_block = ~cmd18;
         spi_r_multi_block = cmd18;
-        spi_r_block = 1;
+        
         if(spi_busy == 1'b0)
         begin
             next_state = READ_DATA;

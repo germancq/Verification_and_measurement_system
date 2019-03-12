@@ -4,7 +4,7 @@
  * @Email:  germancq@dte.us.es
  * @Filename: sdspihost.v
  * @Last modified by:   germancq
- * @Last modified time: 2019-03-06T13:43:01+01:00
+ * @Last modified time: 2019-03-08T17:25:43+01:00
  */
 
  module sdspihost(
@@ -462,7 +462,7 @@
            if(response[39:32] == 8'h1)
              next_state = CMD8_0;
            else
-             next_state = ERROR;
+             next_state = CMD0_0;
 
          end
        CMD8_0:
@@ -612,8 +612,8 @@
                 next_state = CMD17_0;
               else if(r_multi_block == 1)
                 next_state = CMD18_0;
-               else if(w_block == 1)
-                 next_state = CMD24_0;
+              else if(w_block == 1)
+                next_state = CMD24_0;
               end
          end
        CMD17_0:
