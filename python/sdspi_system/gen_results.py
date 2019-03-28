@@ -3,7 +3,7 @@
 # @Email:  germancq@dte.us.es
 # @Filename: gen_results.py
 # @Last modified by:   germancq
-# @Last modified time: 2019-03-08T12:44:55+01:00
+# @Last modified time: 2019-03-28T15:58:51+01:00
 
 import sys
 import os
@@ -12,27 +12,44 @@ import xlwt
 
 BLOCK_SIZE = 512
 NUM_BLOCK_TEST = 0x00100000
-
+RESULTS_OFFSET = 0xC
 SIGNATURE = 0xAABBCCDD
 
 def create_fields(sheet1):
     sheet1.write(0,1,'n_blocks')
     sheet1.write(0,2,'sclk_speed MHz')
     sheet1.write(0,3,'cmd18')
-    sheet1.write(0,4,'time')
+    sheet1.write(0,4,'avg_time ms')
+    sheet1.write(0,5,'best time ms')
+    sheet1.write(0,6,'worst time ms')
 
 def read_params_from_sd(sheet,block_n,micro_sd):
     micro_sd.seek(BLOCK_SIZE*block_n)
     signature = int.from_bytes(micro_sd.read(4),byteorder='big')
+    n_iter = int.from_bytes(micro_sd.read(1),byteorder='big')
     n_blocks = int.from_bytes(micro_sd.read(4),byteorder='big')
     sclk_speed = int.from_bytes(micro_sd.read(1),byteorder='big')
     cmd18 = int.from_bytes(micro_sd.read(1),byteorder='big')
-    time = int.from_bytes(micro_sd.read(4),byteorder='big')
+    micro_sd.seek((BLOCK_SIZE*block_n) + RESULTS_OFFSET)
+    avg_time = 0
+    best_time = 0xFFFFFFFF
+    worst_time = 0
+    for i in range(0,n_iter):
+        time = int.from_bytes(micro_sd.read(4),byteorder='big')
+        avg_time = avg_time + time
+        if(time > worst_time):
+            worst_time = time
+        if(time < best_time):
+            best_time = time
+
+    avg_time = (avg_time / n_iter)
     return (signature,
             n_blocks,
             sclk_speed,
             cmd18,
-            time)
+            avg_time,
+            best_time,
+            worst_time)
 
 def get_clk_speed_from_factor(n, base_clk=100):
     return (base_clk / (2**(n+1)))
@@ -51,8 +68,12 @@ def write_params(sheet1, params , i):
     sclk_speed = get_clk_speed_from_factor(params[2])
     sheet1.write(i,2,sclk_speed)
     sheet1.write(i,3,params[3])
-    time_in_ms = calculated_time_in_ms(params[4])
-    sheet1.write(i,4,time_in_ms)
+    avg_time_in_ms = calculated_time_in_ms(params[4])
+    sheet1.write(i,4,avg_time_in_ms)
+    best_time_in_ms = calculated_time_in_ms(params[5])
+    sheet1.write(i,5,best_time_in_ms)
+    worst_time_in_ms = calculated_time_in_ms(params[6])
+    sheet1.write(i,6,worst_time_in_ms)
     return i+1
 
 def gen_calc(micro_sd):
@@ -62,14 +83,14 @@ def gen_calc(micro_sd):
     valid_signature = 1
     i = 1
     while valid_signature == 1 :
-        params = read_params_from_sd(sheet1,NUM_BLOCK_TEST+i,micro_sd)
+        params = read_params_from_sd(sheet1,NUM_BLOCK_TEST+i-1,micro_sd)
         print(params[0])
         if params[0] != SIGNATURE:
             break
         i = write_params(sheet1,params,i)
 
 
-    wb.save('test_sdspi_system.xls')
+    wb.save('test_iter_sdspi_system.xls')
 
 def main():
     with open(sys.argv[1],"rb") as micro_sd:

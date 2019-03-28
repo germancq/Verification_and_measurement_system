@@ -4,7 +4,7 @@
  * @Email:  germancq@dte.us.es
  * @Filename: fsm_autotest.v
  * @Last modified by:   germancq
- * @Last modified time: 2019-03-08T19:04:31+01:00
+ * @Last modified time: 2019-03-28T15:50:01+01:00
  */
 
  module fsm_autotest(
@@ -55,7 +55,10 @@ assign debug_signal = {counter_block_o,3'h0,current_state};
  //////////signature registers///////////////////////
  wire [31:0] signature;
  wire [7:0] signature_data_0,signature_data_1,signature_data_2,signature_data_3;
- assign signature = {signature_data_0,signature_data_1,signature_data_2,signature_data_3};
+ assign signature = {signature_data_0,
+                     signature_data_1,
+                     signature_data_2,
+                     signature_data_3};
  reg reg_signature_data_0_cl;
  reg reg_signature_data_0_w;
  registro reg_signature_0(
@@ -91,6 +94,18 @@ assign debug_signal = {counter_block_o,3'h0,current_state};
  	.w(reg_signature_data_3_w),
  	.din(spi_data_out),
  	.dout(signature_data_3)
+ );
+
+ //////////iteration register///////////////////////
+ reg reg_iteration_cl;
+ reg reg_iteration_w;
+ wire [7:0] reg_iteration_o;
+ registro reg_iteration(
+ 	.clk(clk),
+ 	.cl(reg_iteration_cl),
+ 	.w(reg_iteration_w),
+ 	.din(spi_data_out),
+ 	.dout(reg_iteration_o)
  );
 
 ///////////////////////////////////////////////////////////////////
@@ -182,6 +197,18 @@ assign debug_signal = {counter_block_o,3'h0,current_state};
     .q(counter_block_o)
  );
 
+ ///////////////iter_counter////////////////
+ reg up_iter_counter;
+ wire [31:0] counter_iter_o;
+ reg rst_iter_counter;
+ assign base_iter = counter_iter_o + 32'h0x00000011;
+ contador_up counter_block(
+    .clk(clk),
+    .rst(rst_iter_counter),
+    .up(up_iter_counter),
+    .q(counter_iter_o)
+ );
+
  ////////////bytes counter ////////////////////
 
  reg up_bytes_counter;
@@ -233,6 +260,9 @@ assign debug_signal = {counter_block_o,3'h0,current_state};
      up_bytes_counter = 0;
      rst_bytes_counter = 0;
 
+     up_iter_counter = 0;
+     rst_iter_counter = 0;
+
 
      spi_r_block = 0;
      spi_r_byte = 0;
@@ -254,6 +284,9 @@ assign debug_signal = {counter_block_o,3'h0,current_state};
      reg_signature_data_2_w = 0;
      reg_signature_data_3_cl = 0;
      reg_signature_data_3_w = 0;
+
+     reg_iteration_cl = 0;
+     reg_iteration_w = 0;
 
      reg_din_0_cl = 0;
      reg_din_0_w = 0;
@@ -283,6 +316,7 @@ assign debug_signal = {counter_block_o,3'h0,current_state};
                  rst_timer_counter = 1;
                  //rst_block_counter = 1;
                  rst_bytes_counter = 1;
+                 rst_iter_counter = 1;
 
                  sdspi_rst = 1;
 
@@ -290,6 +324,8 @@ assign debug_signal = {counter_block_o,3'h0,current_state};
                  reg_signature_data_1_cl = 1;
                  reg_signature_data_2_cl = 1;
                  reg_signature_data_3_cl = 1;
+
+                 reg_iteration_cl = 1;
 
                  reg_din_0_cl = 1;
                  reg_din_1_cl = 1;
@@ -343,12 +379,13 @@ assign debug_signal = {counter_block_o,3'h0,current_state};
                    32'h1:reg_signature_data_1_w = 1;
                    32'h2:reg_signature_data_2_w = 1;
                    32'h3:reg_signature_data_3_w = 1;
-                   32'h4:reg_din_0_w = 1;
-                   32'h5:reg_din_1_w = 1;
-                   32'h6:reg_din_2_w = 1;
-                   32'h7:reg_din_3_w = 1;
-                   32'h8:reg_sclk_speed_w = 1;
-                   32'h9:reg_cmd18_w = 1;
+                   32'h4:reg_iteration_w = 1;
+                   32'h5:reg_din_0_w = 1;
+                   32'h6:reg_din_1_w = 1;
+                   32'h7:reg_din_2_w = 1;
+                   32'h8:reg_din_3_w = 1;
+                   32'h9:reg_sclk_speed_w = 1;
+                   32'ha:reg_cmd18_w = 1;
                    default:
                      begin
                          next_state = CHECK_SIGNATURE;
@@ -444,20 +481,22 @@ assign debug_signal = {counter_block_o,3'h0,current_state};
                    32'h1: reg_spi_data_in = signature_data_1;
                    32'h2: reg_spi_data_in = signature_data_2;
                    32'h3: reg_spi_data_in = signature_data_3;
-                   32'h4: reg_spi_data_in = din_0;
-                   32'h5: reg_spi_data_in = din_1;
-                   32'h6: reg_spi_data_in = din_2;
-                   32'h7: reg_spi_data_in = din_3;
-                   32'h8: reg_spi_data_in = reg_sclk_speed_o;
-                   32'h9: reg_spi_data_in = reg_cmd18_o;
-                   32'ha: reg_spi_data_in = counter_timer_o[31:24];
-                   32'hb: reg_spi_data_in = counter_timer_o[23:16];
-                   32'hc: reg_spi_data_in = counter_timer_o[15:8];
-                   32'hd: reg_spi_data_in = counter_timer_o[7:0];
+                   32'h4: reg_spi_data_in = reg_iteration_o;
+                   32'h5: reg_spi_data_in = din_0;
+                   32'h6: reg_spi_data_in = din_1;
+                   32'h7: reg_spi_data_in = din_2;
+                   32'h8: reg_spi_data_in = din_3;
+                   32'h9: reg_spi_data_in = reg_sclk_speed_o;
+                   32'ha: reg_spi_data_in = reg_cmd18_o;
+                   {base_iter,2'b00}: reg_spi_data_in = counter_timer_o[31:24];
+                   {base_iter,2'b01}: reg_spi_data_in = counter_timer_o[23:16];
+                   {base_iter,2'b10}: reg_spi_data_in = counter_timer_o[15:8];
+                   {base_iter,2'b11}: reg_spi_data_in = counter_timer_o[7:0];
                    32'h203:
                      begin
                          next_state = UPDATE_BLOCK_COUNTER;
                          rst_bytes_counter = 1;
+                         up_iter_counter = 1;
                      end
                    default:reg_spi_data_in = 8'h00;
                  endcase
@@ -480,8 +519,15 @@ assign debug_signal = {counter_block_o,3'h0,current_state};
 
                  if(counter_timer_o == 32'h0 && counter_bytes_o > 32'hF0000)
                  begin
-                     up_block_counter = 1;
-                     next_state = IDLE;
+                    if(reg_iteration_o >= counter_iter_o)
+                      begin
+                        next_state = START_TEST;
+                      end
+                    else
+                      begin
+                        up_block_counter = 1;
+                        next_state = IDLE;
+                      end
                  end
 
              end

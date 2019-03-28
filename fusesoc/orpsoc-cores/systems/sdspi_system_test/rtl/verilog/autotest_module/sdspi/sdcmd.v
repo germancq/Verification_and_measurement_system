@@ -4,7 +4,7 @@
  * @Email:  germancq@dte.us.es
  * @Filename: sdcmd.v
  * @Last modified by:   germancq
- * @Last modified time: 2019-03-01T13:25:09+01:00
+ * @Last modified time: 2019-03-28T12:45:28+01:00
  */
 
 
@@ -98,7 +98,11 @@
  );
 
 
- assign response = {response_4_o,response_3_o,response_2_o,response_1_o,response_0_o};
+ assign response = {response_4_o,
+                    response_3_o,
+                    response_2_o,
+                    response_1_o,
+                    response_0_o};
 
  wire [7:0] response_0_o;
  reg response_0_cl;

@@ -4,7 +4,7 @@
  * @Email:  germancq@dte.us.es
  * @Filename: sdspihost.v
  * @Last modified by:   germancq
- * @Last modified time: 2019-03-08T17:25:43+01:00
+ * @Last modified time: 2019-03-28T12:45:13+01:00
  */
 
  module sdspihost(
@@ -140,7 +140,12 @@
 
  //command register
 
- assign command = {command_5_o,command_4_o,command_3_o,command_2_o,command_1_o,command_0_o};
+ assign command = {command_5_o,
+                   command_4_o,
+                   command_3_o,
+                   command_2_o,
+                   command_1_o,
+                   command_0_o};
 
  wire [7:0] command_0_o;
  reg command_0_cl;
@@ -298,8 +303,10 @@
  /*
    States of SD
      1) Power up
-       - usaremos tambien identification clock rate , sclk_div rango[7-9] [390 KHz - 97.65 KHz]
-       - wait 250 ms, a 50MHz(20ns) son 12500 ciclos, 0x30D4, a 100Mhz son 25000 ciclos, 0x61A8
+       - usaremos tambien identification clock rate ,
+         sclk_div rango[7-9] [390 KHz - 97.65 KHz]
+       - wait 250 ms, a 50MHz(20ns) son 12500 ciclos, 0x30D4,
+         a 100Mhz son 25000 ciclos, 0x61A8
        - wait max (74 ciclos SD clk , 1 ms), esos 74 ciclos con mosi = '1'
      2) Identification Mode (Idle State + Ready State + Identification State)
        - During the card identification process,
