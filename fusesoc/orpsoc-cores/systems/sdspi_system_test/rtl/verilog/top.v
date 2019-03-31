@@ -4,7 +4,7 @@
  * @Email:  germancq@dte.us.es
  * @Filename: top.v
  * @Last modified by:   germancq
- * @Last modified time: 2019-03-08T17:31:25+01:00
+ * @Last modified time: 2019-03-30T19:54:22+01:00
  */
 module top(
   input sys_clk_pad_i,
@@ -12,6 +12,9 @@ module top(
 
   input [15:0] switch_i,
   output [15:0] leds_o,
+
+  output [6:0] seg,
+  output [7:0] AN,
 
   output cs,
   output sclk,
@@ -21,6 +24,18 @@ module top(
   output SD_DAT_1,
   output SD_DAT_2
 );
+
+
+  wire [31:0] debug_data;
+  display display_inst(
+    .clk(sys_clk_pad_i),
+    .rst(center_button),
+    .div_value(32'd18),
+    .din(debug_data),
+    .an(AN),
+    .seg(seg)
+  );
+
 
   assign SD_RESET = 1'b0;
   assign SD_DAT_1 = 1'b1;
@@ -64,7 +79,7 @@ module top(
     //uut results signals
     .sdspi_finish(sdspi_finish),
 
-    .debug({16'h0000,leds_o})
+    .debug(debug_data)
 
   );
 

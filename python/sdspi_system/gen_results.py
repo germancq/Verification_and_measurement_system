@@ -3,7 +3,7 @@
 # @Email:  germancq@dte.us.es
 # @Filename: gen_results.py
 # @Last modified by:   germancq
-# @Last modified time: 2019-03-28T15:58:51+01:00
+# @Last modified time: 2019-03-31T17:07:15+02:00
 
 import sys
 import os
@@ -22,6 +22,7 @@ def create_fields(sheet1):
     sheet1.write(0,4,'avg_time ms')
     sheet1.write(0,5,'best time ms')
     sheet1.write(0,6,'worst time ms')
+    sheet1.write(0,7,'iterations')
 
 def read_params_from_sd(sheet,block_n,micro_sd):
     micro_sd.seek(BLOCK_SIZE*block_n)
@@ -36,6 +37,8 @@ def read_params_from_sd(sheet,block_n,micro_sd):
     worst_time = 0
     for i in range(0,n_iter):
         time = int.from_bytes(micro_sd.read(4),byteorder='big')
+        print ('iter is = %i' % i)
+        print ('time is = %i' % time)
         avg_time = avg_time + time
         if(time > worst_time):
             worst_time = time
@@ -49,7 +52,8 @@ def read_params_from_sd(sheet,block_n,micro_sd):
             cmd18,
             avg_time,
             best_time,
-            worst_time)
+            worst_time,
+            n_iter)
 
 def get_clk_speed_from_factor(n, base_clk=100):
     return (base_clk / (2**(n+1)))
@@ -74,6 +78,7 @@ def write_params(sheet1, params , i):
     sheet1.write(i,5,best_time_in_ms)
     worst_time_in_ms = calculated_time_in_ms(params[6])
     sheet1.write(i,6,worst_time_in_ms)
+    sheet1.write(i,7,params[7])
     return i+1
 
 def gen_calc(micro_sd):
