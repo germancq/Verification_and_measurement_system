@@ -7,9 +7,11 @@ file_type = xdc
 src_files =
  rtl/verilog/top.v
  rtl/verilog/misc/contador_up.v
+ rtl/verilog/misc/counter_load.v
  rtl/verilog/misc/genericMux.v
  rtl/verilog/misc/registro_desp.v
  rtl/verilog/misc/registro.v
+ rtl/verilog/misc/memory_bank.v
  rtl/verilog/7_seg/display.v
  rtl/verilog/7_seg/an_gen.v
  rtl/verilog/7_seg/dec_to_7_seg.v

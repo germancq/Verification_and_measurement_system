@@ -3,7 +3,7 @@
 # @Email:  germancq@dte.us.es
 # @Filename: gen_testbench.py
 # @Last modified by:   germancq
-# @Last modified time: 2019-03-31T14:00:07+02:00
+# @Last modified time: 2019-04-01T18:38:10+02:00
 
 import sys
 import os
@@ -13,7 +13,7 @@ import math
 
 BLOCK_SIZE = 512
 NUM_BLOCK_TEST = 0x00100000
-NUMBER_ITER = 5
+NUMBER_ITER = 100
 SIGNATURE = 0xAABBCCDD
 
 
@@ -29,8 +29,8 @@ SIGNATURE = 0xAABBCCDD
 def gen_all_posibilities(micro_sd):
     parameters = [
         range(0,1+1),
-        range(1,3+1),#sclk_speed
-        range(1,4+1)#n_blocks
+        range(1,5+1),#sclk_speed
+        range(1,5+1)#n_blocks
     ]
     total_posibilities = 1
     for i in range(0,len(parameters)):

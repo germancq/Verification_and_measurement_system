@@ -4,7 +4,7 @@
  * @Email:  germancq@dte.us.es
  * @Filename: fsm_autotest.v
  * @Last modified by:   germancq
- * @Last modified time: 2019-03-31T17:51:29+02:00
+ * @Last modified time: 2019-04-01T18:37:49+02:00
  */
 
  module fsm_autotest(
@@ -38,7 +38,7 @@
      output [31:0] debug_signal
      );
 
-assign debug_signal = {counter_block_o[7:0],counter_iter_o[15:0],3'h0,current_state};
+assign debug_signal = {counter_block_o[7:0],base_iter[7:0],counter_iter_o[7:0],3'h0,current_state};
 
  /////registro SPI ///////////////////
  reg reg_spi_data_cl;
@@ -202,16 +202,7 @@ assign debug_signal = {counter_block_o[7:0],counter_iter_o[15:0],3'h0,current_st
  wire [31:0] counter_iter_o;
  reg rst_iter_counter;
  wire [31:0] base_iter;
- wire [31:0] time_adr_0;
- wire [31:0] time_adr_1;
- wire [31:0] time_adr_2;
- wire [31:0] time_adr_3;
- assign base_iter = counter_iter_o + 4'b11;
- assign time_adr_0 = base_iter << 2;
- assign time_adr_1 = (base_iter << 2) | 3'b01;
- assign time_adr_2 = base_iter << 2 | 3'b10;
- assign time_adr_3 = base_iter << 2 | 3'b11;
-
+ assign base_iter = ((counter_iter_o + 3) << 2);
  contador_up counter_iter_block(
     .clk(clk),
     .rst(rst_iter_counter),
@@ -219,6 +210,9 @@ assign debug_signal = {counter_block_o[7:0],counter_iter_o[15:0],3'h0,current_st
     .q(counter_iter_o)
  );
 
+
+ ///////////////memory////////////////
+reg [7:0] memory_array [0:511];
  ////////////bytes counter ////////////////////
 
  reg up_bytes_counter;
@@ -273,7 +267,6 @@ assign debug_signal = {counter_block_o[7:0],counter_iter_o[15:0],3'h0,current_st
      up_iter_counter = 0;
      rst_iter_counter = 0;
 
-
      spi_r_block = 0;
      spi_r_byte = 0;
      spi_r_multi_block = 0;
@@ -327,6 +320,7 @@ assign debug_signal = {counter_block_o[7:0],counter_iter_o[15:0],3'h0,current_st
                  //rst_block_counter = 1;
                  rst_bytes_counter = 1;
                  rst_iter_counter = 1;
+                 //w_iter_2_counter = 1;
 
                  sdspi_rst = 1;
 
@@ -396,9 +390,11 @@ assign debug_signal = {counter_block_o[7:0],counter_iter_o[15:0],3'h0,current_st
                    32'h8:reg_din_3_w = 1;
                    32'h9:reg_sclk_speed_w = 1;
                    32'ha:reg_cmd18_w = 1;
+                   32'h200: next_state = CHECK_SIGNATURE;
                    default:
                      begin
-                         next_state = CHECK_SIGNATURE;
+                        memory_array[counter_bytes_o] = spi_data_out;
+                         //next_state = CHECK_SIGNATURE;
                      end
  		        endcase
              end
@@ -498,17 +494,25 @@ assign debug_signal = {counter_block_o[7:0],counter_iter_o[15:0],3'h0,current_st
                    32'h8: reg_spi_data_in = din_3;
                    32'h9: reg_spi_data_in = reg_sclk_speed_o;
                    32'ha: reg_spi_data_in = reg_cmd18_o;
-                   {counter_iter_o + 2'b11,2'b00}: reg_spi_data_in = counter_timer_o[31:24];
-                   {counter_iter_o + 2'b11,2'b01}: reg_spi_data_in = counter_timer_o[23:16];
-                   {counter_iter_o + 2'b11,2'b10}: reg_spi_data_in = counter_timer_o[15:8];
-                   {counter_iter_o + 2'b11+2'b11}: reg_spi_data_in = counter_timer_o[7:0];
+                   32'hb: reg_spi_data_in = 8'h00;
+                   base_iter : reg_spi_data_in = counter_timer_o[31:24];
+                   base_iter + 1 : reg_spi_data_in = counter_timer_o[23:16];
+                   base_iter + 2 : reg_spi_data_in = counter_timer_o[15:8];
+                   base_iter + 3 : reg_spi_data_in = counter_timer_o[7:0];
+                   32'h200:;
+                   32'h201:;
+                   32'h202:;
                    32'h203:
                      begin
                          next_state = UPDATE_BLOCK_COUNTER;
                          rst_bytes_counter = 1;
                          up_iter_counter = 1;
+                         //
                      end
-                   default:reg_spi_data_in = 8'h00;
+                  default:
+                    begin
+                      reg_spi_data_in = memory_array[counter_bytes_o];
+                    end
                  endcase
              end
           WAIT_W_BYTE:
@@ -529,7 +533,7 @@ assign debug_signal = {counter_block_o[7:0],counter_iter_o[15:0],3'h0,current_st
 
                  if(counter_timer_o == 32'h0 && counter_bytes_o > 32'hF0000)
                  begin
-                    if(reg_iteration_o >= counter_iter_o)
+                    if(reg_iteration_o > counter_iter_o)
                       begin
                         rst_bytes_counter = 1;
                         next_state = BEGIN_READ_FROM_SD;
