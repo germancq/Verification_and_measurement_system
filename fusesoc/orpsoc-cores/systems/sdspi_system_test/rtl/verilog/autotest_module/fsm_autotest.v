@@ -4,7 +4,7 @@
  * @Email:  germancq@dte.us.es
  * @Filename: fsm_autotest.v
  * @Last modified by:   germancq
- * @Last modified time: 2019-04-01T18:37:49+02:00
+ * @Last modified time: 2019-04-05T12:29:20+02:00
  */
 
  module fsm_autotest(
@@ -212,7 +212,17 @@ assign debug_signal = {counter_block_o[7:0],base_iter[7:0],counter_iter_o[7:0],3
 
 
  ///////////////memory////////////////
-reg [7:0] memory_array [0:511];
+//reg [7:0] memory_array [0:511];
+ reg memory_inst_write;
+ wire [7:0] memory_inst_o;
+
+ memory_bank memory_inst(
+    .clk(clk),
+    .addr(counter_bytes_o),
+    .write(memory_inst_write),
+    .data_in(spi_data_out),
+    .data_out(memory_inst_o)
+ );
  ////////////bytes counter ////////////////////
 
  reg up_bytes_counter;
@@ -274,6 +284,8 @@ reg [7:0] memory_array [0:511];
      spi_w_block = 0;
      spi_w_byte = 0;
 
+     memory_inst_write = 0;
+
 
      sdspi_ctrl_mux = 0;
      sdspi_rst = 0;
@@ -317,10 +329,8 @@ reg [7:0] memory_array [0:511];
              begin
 
                  rst_timer_counter = 1;
-                 //rst_block_counter = 1;
                  rst_bytes_counter = 1;
                  rst_iter_counter = 1;
-                 //w_iter_2_counter = 1;
 
                  sdspi_rst = 1;
 
@@ -393,8 +403,8 @@ reg [7:0] memory_array [0:511];
                    32'h200: next_state = CHECK_SIGNATURE;
                    default:
                      begin
-                        memory_array[counter_bytes_o] = spi_data_out;
-                         //next_state = CHECK_SIGNATURE;
+                        memory_inst_write = 1;
+                        //memory_array[counter_bytes_o] = spi_data_out;
                      end
  		        endcase
              end
@@ -511,7 +521,7 @@ reg [7:0] memory_array [0:511];
                      end
                   default:
                     begin
-                      reg_spi_data_in = memory_array[counter_bytes_o];
+                      reg_spi_data_in = memory_inst_o;//memory_array[counter_bytes_o];
                     end
                  endcase
              end

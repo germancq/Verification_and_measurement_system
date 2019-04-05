@@ -3,7 +3,7 @@
 # @Email:  germancq@dte.us.es
 # @Filename: gen_testbench.py
 # @Last modified by:   germancq
-# @Last modified time: 2019-04-01T18:38:10+02:00
+# @Last modified time: 2019-04-05T13:40:59+02:00
 
 import sys
 import os
@@ -13,7 +13,7 @@ import math
 
 BLOCK_SIZE = 512
 NUM_BLOCK_TEST = 0x00100000
-NUMBER_ITER = 100
+NUMBER_ITER = 3
 SIGNATURE = 0xAABBCCDD
 
 
@@ -29,17 +29,19 @@ SIGNATURE = 0xAABBCCDD
 def gen_all_posibilities(micro_sd):
     parameters = [
         range(0,1+1),
-        range(1,5+1),#sclk_speed
-        range(1,5+1)#n_blocks
+        range(1,3+1),#sclk_speed
+        range(1,4+1)#n_blocks
     ]
     total_posibilities = 1
+    modulo_op = []
     for i in range(0,len(parameters)):
         total_posibilities = total_posibilities * len(parameters[i])
+        modulo_op.insert(i,total_posibilities)
     print(total_posibilities)
     j = 0
     zero = 0
     for n in range (0, total_posibilities):
-        pairs = create_posibility(n,parameters)
+        pairs = create_posibility(n,parameters,modulo_op)
         print(pairs)
         n_blocks = 10 ** pairs[2]
         micro_sd.seek(BLOCK_SIZE*(NUM_BLOCK_TEST+j))
@@ -57,15 +59,7 @@ def gen_all_posibilities(micro_sd):
     micro_sd.write(zero.to_bytes(4, byteorder='big'))
 
 
-def create_posibility(n,parameters):
-    modulo_op = []
-    div_op = []
-    anteriores_posibilidades = 1
-    for i in range(len(parameters),0,-1):
-        value = anteriores_posibilidades * len(parameters[i-1])
-        modulo_op.insert(0,value)
-        anteriores_posibilidades = value
-
+def create_posibility(n,parameters,modulo_op):
     result = []
     for i in range(0,len(parameters)):
         x = n % modulo_op[i]

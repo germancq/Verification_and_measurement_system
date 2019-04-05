@@ -3,7 +3,7 @@
 # @Email:  germancq@dte.us.es
 # @Filename: gen_results.py
 # @Last modified by:   germancq
-# @Last modified time: 2019-04-03T12:46:15+02:00
+# @Last modified time: 2019-04-05T12:31:49+02:00
 
 import sys
 import os
@@ -103,7 +103,7 @@ def gen_calc(micro_sd):
         i = write_params(sheet1,params,i)
 
 
-    wb.save('test_iter_2_sdspi_system.xls')
+    wb.save('test_iter_0_sdspi_system.xls')
 
 def main():
     with open(sys.argv[1],"rb") as micro_sd:
