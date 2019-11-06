@@ -1,0 +1,78 @@
+CAPI=2:
+
+
+#changes to fusesoc & edatool to read board_part
+# edatool : edalizes/templates/vivado/vivado-project.j2
+#     - add line: set_property board_part {{tool_options.board_part}} [current_project]
+# edatool : edalize/vivado.py
+#     - add code:
+#         tool_options = {'members' : {'part' : 'String' ,
+#                                      'board_part' : 'String' }}
+#
+#         get_doc method:
+#                   return {'description' : cls._description,
+#                    'members' : [
+#                        {'name' : 'part',
+#                         'type' : 'String',
+#                         'desc' : 'FPGA part number (e.g. xc7a35tcsg324-1)'},
+#			                  {'name' : 'board_part',
+#                         'type' : 'String',
+#                         'desc' : 'board_part (e.g. digilentinc.com:genesys2:part0:1.1)'}]}
+
+
+
+
+
+name : ::twofish_system:0
+description : Twofish example on Nexys4DDR
+
+
+targets :
+  synth :
+
+    toplevel  : top
+
+    filesets  :
+      - rtl_top
+      - rtl_autotest
+      - constraints
+
+    default_tool : vivado
+
+    tools:
+      vivado:
+        part : xc7a100tcsg324-1
+        
+
+filesets :
+  rtl_top :
+
+    depend :
+      - twofish_cipher
+
+    file_type : systemVerilogSource
+
+    files :
+      - rtl/top.sv
+      
+
+
+  rtl_autotest :
+    file_type : verilogSource
+    files : 
+      - rtl/autotest_module/autotest_module.v
+      - rtl/autotest_module/fsm_autotest.v
+      - rtl/autotest_module/misc/contador_up.v
+      - rtl/autotest_module/misc/genericMux.v
+      - rtl/autotest_module/misc/memory_bank.v
+      - rtl/autotest_module/misc/registro_desp.v
+      - rtl/autotest_module/misc/registro.v
+      - rtl/autotest_module/sdspi/sdcmd.v
+      - rtl/autotest_module/sdspi/sdspihost.v
+      - rtl/autotest_module/sdspi/spi_master.v
+      
+
+  constraints :
+    file_type : xdc
+    files :
+      - data/Nexys4DDR_Master.xdc

@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<testsuites name="results">
-  <testsuite name="all" package="all" tests="0">
-    <property name="random_seed" value="1551716043" />
-    <testcase classname="dec_to_7_seg_test" name="run_test_001" ratio_time="0.0" sim_time_ns="0.0" time="0.0003879070281982422">
-      <failure message="Test failed with random_seed=1551716043" stderr="" stdout="'Failing test at simulator request before test run completion: Simulator shutdown prematurely'" />
-    </testcase>
-  </testsuite>
-</testsuites>

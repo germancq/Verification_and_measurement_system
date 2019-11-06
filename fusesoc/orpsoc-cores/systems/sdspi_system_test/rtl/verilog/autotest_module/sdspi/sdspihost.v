@@ -591,12 +591,12 @@
            rst_counter = 1;
 
            if(r_block == 1)
-             next_state <= WAIT_BEFORE_READ;
+             next_state = WAIT_BEFORE_READ;
            else if(r_multi_block == 1)
-             next_state <= WAIT_BEFORE_READ;
+             next_state = WAIT_BEFORE_READ;
            else if(w_block == 1)
            begin
-             next_state <= WAIT_BEFORE_READ;
+             next_state = WAIT_BEFORE_READ;
              crc_err_cl = 1;
            end
          end

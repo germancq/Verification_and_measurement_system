@@ -1,0 +1,18 @@
+CAPI=1
+[main]
+description = "trivium cipher"
+
+[verilog]
+src_files =
+  systemVerilog/rtl/trivium.sv
+  systemVerilog/rtl/trivium_wrapper.sv
+  systemVerilog/rtl/counter.sv
+  systemVerilog/rtl/shift_register.sv
+
+
+[provider] 
+name = github
+user = germancq
+repo = examples_cryptography
+version = 0c89ac5a3492cea4c7d030b8b8ecd0be2a8f9f93
+ 

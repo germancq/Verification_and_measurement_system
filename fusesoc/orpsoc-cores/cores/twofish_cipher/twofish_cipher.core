@@ -1,0 +1,18 @@
+CAPI=1
+[main]
+description = "twofish cipher"
+
+[verilog]
+src_files =
+  systemVerilog/rtl/twofish.sv
+  systemVerilog/rtl/galois_arithmetic.sv
+  systemVerilog/rtl/adder.sv
+  systemVerilog/rtl/counter.sv
+  systemVerilog/rtl/register.sv
+
+
+[provider] 
+name = github
+user = germancq
+repo = examples_cryptography
+version = 32337b9b2ab7c8e877ee55a681c447439c1e5e5d

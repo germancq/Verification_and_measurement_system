@@ -1,0 +1,21 @@
+CAPI=1
+[main]
+description = "key derivation function"
+
+[verilog]
+src_files =
+  systemVerilog/rtl/KDF.sv
+  systemVerilog/rtl/hirose_present_wrapper.sv
+  systemVerilog/rtl/hirose_present.sv
+  systemVerilog/rtl/present.sv
+  systemVerilog/rtl/present_misc.sv
+  systemVerilog/rtl/memory_module.sv
+  systemVerilog/rtl/counter.sv
+  systemVerilog/rtl/register.sv
+
+
+[provider] 
+name = github
+user = germancq
+repo = examples_cryptography
+version = 2240893cb7c68066ff1397d2c39b90e3e2e46170
