@@ -57,11 +57,11 @@ filesets :
 
     files :
       - rtl/top.sv
-      - rtl/configuration_package.sv
+      - rtl/configuration_package.sv 
 
 
   rtl_autotest :
-    file_type : verilogSource
+    file_type : systemVerilogSource
     files : 
       - rtl/autotest_core/autotest_module.sv
       - rtl/autotest_core/fsm_autotest.sv  

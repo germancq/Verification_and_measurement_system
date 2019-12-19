@@ -2,15 +2,7 @@
  * @ Author: German Cano Quiveu, germancq
  * @ Create Time: 2019-12-19 13:20:38
  * @ Modified by: Your name
- * @ Modified time: 2019-12-19 18:09:41
- * @ Description:
- */
-
-/**
- * @ Author: German Cano Quiveu, germancq
- * @ Create Time: 2019-12-19 13:20:38
- * @ Modified by: Your name
- * @ Modified time: 2019-12-19 18:02:49
+ * @ Modified time: 2019-12-19 19:10:38
  * @ Description:
  */
 
@@ -90,7 +82,7 @@ module top(
         .din(debug),
         .an(AN),
         .seg(seg)
-    )
+    );
 
     
 

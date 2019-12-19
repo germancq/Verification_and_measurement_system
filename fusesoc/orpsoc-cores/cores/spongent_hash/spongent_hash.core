@@ -2,11 +2,14 @@ CAPI=1
 [main]
 description = "spongent hash"
 
+depend =
+ misc
+
 [verilog]
 src_files =
   systemVerilog/rtl/spongent.sv
   systemVerilog/rtl/LFSR.sv
-  systemVerilog/rtl/counter.sv
+  
 
 
 [provider] 
