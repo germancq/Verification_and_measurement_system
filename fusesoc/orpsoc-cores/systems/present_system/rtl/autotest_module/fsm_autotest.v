@@ -41,6 +41,8 @@
 
 assign debug_signal = {counter_block_o[7:0],3'h0,current_state};
 
+genvar i;
+
  /////registro SPI ///////////////////
  reg reg_spi_data_cl;
  reg reg_spi_data_w;
@@ -54,6 +56,21 @@ assign debug_signal = {counter_block_o[7:0],3'h0,current_state};
  );
 
  //////////signature registers///////////////////////
+ wire [31:0] signature;
+ reg [0:0] reg_signature_cl[3:0];
+ reg [0:0] reg_signature_w[3:0];
+ generate
+    for (i=0;i<4;i=i+1) begin
+        registro reg_signature_i(
+            .clk(clk),
+            .cl(reg_signature_cl[i]),
+            .w(reg_signature_w[i]),
+            .din(spi_data_out),
+            .dout(signature[(i<<3)+1:(i<<3)])
+        );
+    end
+ endgenerate
+ /*
  wire [31:0] signature;
  wire [7:0] signature_data_0,signature_data_1,signature_data_2,signature_data_3;
  assign signature = {signature_data_0,signature_data_1,signature_data_2,signature_data_3};
@@ -93,7 +110,7 @@ assign debug_signal = {counter_block_o[7:0],3'h0,current_state};
  	.din(spi_data_out),
  	.dout(signature_data_3)
  );
-
+    */
  //////////iteration register///////////////////////
  reg reg_iteration_cl;
  reg reg_iteration_w;
@@ -111,6 +128,22 @@ assign debug_signal = {counter_block_o[7:0],3'h0,current_state};
 
 //////////uut specific registers///////////////////////
   /////////////block_i_uut////////////////
+  
+  
+  reg [0:0] reg_block_i_uut_cl[7:0];
+  reg [0:0] reg_block_i_uut_w[7:0];
+  generate
+    for (i=0;i<8;i=i+1) begin
+            registro reg_block_i_uut_i(
+                .clk(clk),
+                .cl(reg_block_i_uut_cl[i]),
+                .w(reg_block_i_uut_w[i]),
+                .din(spi_data_out),
+                .dout(block_i_uut[(i<<3)+1:(i<<3)])
+            );
+    end
+  endgenerate
+  /*
   wire [7:0] block_i_0,
              block_i_1,
              block_i_2,
@@ -194,7 +227,24 @@ assign debug_signal = {counter_block_o[7:0],3'h0,current_state};
   	.din(spi_data_out),
   	.dout(block_i_7)
   );
+  */
   /////////////key_uut////////////////
+
+  reg [0:0] reg_key_uut_cl[9:0];
+  reg [0:0] reg_key_uut_w[9:0];
+  generate
+    for (i=0;i<10;i=i+1) begin
+            registro reg_key_uut_i(
+                .clk(clk),
+                .cl(reg_key_uut_cl[i]),
+                .w(reg_key_uut_w[i]),
+                .din(spi_data_out),
+                .dout(key_uut[(i<<3)+1:(i<<3)])
+            );
+    end
+  endgenerate  
+
+  /*
   wire [7:0] key_uut_0,
              key_uut_1,
              key_uut_2,
@@ -298,7 +348,7 @@ assign debug_signal = {counter_block_o[7:0],3'h0,current_state};
   	.din(spi_data_out),
   	.dout(key_uut_9)
   );
-  
+  */
   //////////////encdec_uut////////////
   //wire[7:0] encdec_uut_o;
   reg reg_encdec_uut_o_cl;
@@ -442,55 +492,57 @@ assign debug_signal = {counter_block_o[7:0],3'h0,current_state};
 
      rst_uut = 0;
 
-     reg_signature_data_0_cl = 0;
-     reg_signature_data_0_w = 0;
-     reg_signature_data_1_cl = 0;
-     reg_signature_data_1_w = 0;
-     reg_signature_data_2_cl = 0;
-     reg_signature_data_2_w = 0;
-     reg_signature_data_3_cl = 0;
-     reg_signature_data_3_w = 0;
+     reg_signature_cl[0] = 0;
+     reg_signature_w[0] = 0;
+     reg_signature_cl[1] = 0;
+     reg_signature_w[1] = 0;
+     reg_signature_cl[2] = 0;
+     reg_signature_w[2] = 0;
+     reg_signature_cl[3] = 0;
+     reg_signature_w[3] = 0;
 
      reg_iteration_cl = 0;
      reg_iteration_w = 0;
 
-     reg_block_i_0_cl = 0;
-     reg_block_i_0_w = 0;
-     reg_block_i_1_cl = 0;
-     reg_block_i_1_w = 0;
-     reg_block_i_2_cl = 0;
-     reg_block_i_2_w = 0;
-     reg_block_i_3_cl = 0;
-     reg_block_i_3_w = 0;
-     reg_block_i_4_cl = 0;
-     reg_block_i_4_w = 0;
-     reg_block_i_5_cl = 0;
-     reg_block_i_5_w = 0;
-     reg_block_i_6_cl = 0;
-     reg_block_i_6_w = 0;
-     reg_block_i_7_cl = 0;
-     reg_block_i_7_w = 0;
+     reg_block_i_uut_cl[0] = 0;
+     reg_block_i_uut_w[0] = 0;
+     reg_block_i_uut_cl[1] = 0;
+     reg_block_i_uut_w[1] = 0;
+     reg_block_i_uut_cl[2] = 0;
+     reg_block_i_uut_w[2] = 0;
+     reg_block_i_uut_cl[3] = 0;
+     reg_block_i_uut_w[3] = 0;
+     reg_block_i_uut_cl[4] = 0;
+     reg_block_i_uut_w[4] = 0;
+     reg_block_i_uut_cl[5] = 0;
+     reg_block_i_uut_w[5] = 0;
+     reg_block_i_uut_cl[6] = 0;
+     reg_block_i_uut_w[6] = 0;
+     reg_block_i_uut_cl[7] = 0;
+     reg_block_i_uut_w[7] = 0;
+     
 
-     reg_key_uut_0_cl = 0;
-     reg_key_uut_0_w = 0;
-     reg_key_uut_1_cl = 0;
-     reg_key_uut_1_w = 0;
-     reg_key_uut_2_cl = 0;
-     reg_key_uut_2_w = 0;
-     reg_key_uut_3_cl = 0;
-     reg_key_uut_3_w = 0;
-     reg_key_uut_4_cl = 0;
-     reg_key_uut_4_w = 0;
-     reg_key_uut_5_cl = 0;
-     reg_key_uut_5_w = 0;
-     reg_key_uut_6_cl = 0;
-     reg_key_uut_6_w = 0;
-     reg_key_uut_7_cl = 0;
-     reg_key_uut_7_w = 0;
-     reg_key_uut_8_cl = 0;
-     reg_key_uut_8_w = 0;
-     reg_key_uut_9_cl = 0;
-     reg_key_uut_9_w = 0;
+     reg_key_uut_cl[0] = 0;
+     reg_key_uut_w[0] = 0;
+     reg_key_uut_cl[1] = 0;
+     reg_key_uut_w[1] = 0;
+     reg_key_uut_cl[2] = 0;
+     reg_key_uut_w[2] = 0;
+     reg_key_uut_cl[3] = 0;
+     reg_key_uut_w[3] = 0;
+     reg_key_uut_cl[4] = 0;
+     reg_key_uut_w[4] = 0;
+     reg_key_uut_cl[5] = 0;
+     reg_key_uut_w[5] = 0;
+     reg_key_uut_cl[6] = 0;
+     reg_key_uut_w[6] = 0;
+     reg_key_uut_cl[7] = 0;
+     reg_key_uut_w[7] = 0;
+     reg_key_uut_cl[8] = 0;
+     reg_key_uut_w[8] = 0;
+     reg_key_uut_cl[9] = 0;
+     reg_key_uut_w[9] = 0;
+     
 
      reg_encdec_uut_o_cl = 0;
      reg_encdec_uut_o_w = 0;
@@ -514,32 +566,32 @@ assign debug_signal = {counter_block_o[7:0],3'h0,current_state};
 
                  rst_uut = 1;
 
-                 reg_signature_data_0_cl = 1;
-                 reg_signature_data_1_cl = 1;
-                 reg_signature_data_2_cl = 1;
-                 reg_signature_data_3_cl = 1;
+                 reg_signature_cl[0] = 1;
+                 reg_signature_cl[1] = 1;
+                 reg_signature_cl[2] = 1;
+                 reg_signature_cl[3] = 1;
 
                  reg_iteration_cl = 1;
 
-                 reg_block_i_0_cl = 1;
-                 reg_block_i_1_cl = 1;
-                 reg_block_i_2_cl = 1;
-                 reg_block_i_3_cl = 1;
-                 reg_block_i_4_cl = 1;
-                 reg_block_i_5_cl = 1;
-                 reg_block_i_6_cl = 1;
-                 reg_block_i_7_cl = 1;
+                 reg_block_i_uut_cl[0] = 1;
+                 reg_block_i_uut_cl[1] = 1;
+                 reg_block_i_uut_cl[2] = 1;
+                 reg_block_i_uut_cl[3] = 1;
+                 reg_block_i_uut_cl[4] = 1;
+                 reg_block_i_uut_cl[5] = 1;
+                 reg_block_i_uut_cl[6] = 1;
+                 reg_block_i_uut_cl[7] = 1;
 
-                 reg_key_uut_0_cl = 1;
-                 reg_key_uut_1_cl = 1;
-                 reg_key_uut_2_cl = 1;
-                 reg_key_uut_3_cl = 1;
-                 reg_key_uut_4_cl = 1;
-                 reg_key_uut_5_cl = 1;
-                 reg_key_uut_6_cl = 1;
-                 reg_key_uut_7_cl = 1;
-                 reg_key_uut_8_cl = 1;
-                 reg_key_uut_9_cl = 1;
+                 reg_key_uut_cl[0] = 1;
+                 reg_key_uut_cl[1] = 1;
+                 reg_key_uut_cl[2] = 1;
+                 reg_key_uut_cl[3] = 1;
+                 reg_key_uut_cl[4] = 1;
+                 reg_key_uut_cl[5] = 1;
+                 reg_key_uut_cl[6] = 1;
+                 reg_key_uut_cl[7] = 1;
+                 reg_key_uut_cl[8] = 1;
+                 reg_key_uut_cl[9] = 1;
 
                  reg_encdec_uut_o_cl = 1;
 
@@ -587,29 +639,29 @@ assign debug_signal = {counter_block_o[7:0],3'h0,current_state};
                  next_state = READ_BYTE;
 
                 case(counter_bytes_o)
-                    32'h0:reg_signature_data_0_w = 1;
-                    32'h1:reg_signature_data_1_w = 1;
-                    32'h2:reg_signature_data_2_w = 1;
-                    32'h3:reg_signature_data_3_w = 1;
+                    32'h0:reg_signature_w[0] = 1;
+                    32'h1:reg_signature_w[1] = 1;
+                    32'h2:reg_signature_w[2] = 1;
+                    32'h3:reg_signature_w[3] = 1;
                     32'h4:reg_iteration_w = 1;
-                    32'h5:reg_block_i_0_w = 1;
-                    32'h6:reg_block_i_1_w = 1;
-                    32'h7:reg_block_i_2_w = 1;
-                    32'h8:reg_block_i_3_w = 1;
-                    32'h9:reg_block_i_4_w = 1;
-                    32'hA:reg_block_i_5_w = 1;
-                    32'hB:reg_block_i_6_w = 1;
-                    32'hC:reg_block_i_7_w = 1;
-                    32'hD:reg_key_uut_0_w = 1;
-                    32'hE:reg_key_uut_1_w = 1;
-                    32'hF:reg_key_uut_2_w = 1;
-                    32'h10:reg_key_uut_3_w = 1;
-                    32'h11:reg_key_uut_4_w = 1;
-                    32'h12:reg_key_uut_5_w = 1;
-                    32'h13:reg_key_uut_6_w = 1;
-                    32'h14:reg_key_uut_7_w = 1;
-                    32'h15:reg_key_uut_8_w = 1;
-                    32'h16:reg_key_uut_9_w = 1;
+                    32'h5:reg_block_i_uut_w[0] = 1;
+                    32'h6:reg_block_i_uut_w[1] = 1;
+                    32'h7:reg_block_i_uut_w[2] = 1;
+                    32'h8:reg_block_i_uut_w[3] = 1;
+                    32'h9:reg_block_i_uut_w[4] = 1;
+                    32'hA:reg_block_i_uut_w[5] = 1;
+                    32'hB:reg_block_i_uut_w[6] = 1;
+                    32'hC:reg_block_i_uut_w[7] = 1;
+                    32'hD:reg_key_uut_w[0] = 1;
+                    32'hE:reg_key_uut_w[1] = 1;
+                    32'hF:reg_key_uut_w[2] = 1;
+                    32'h10:reg_key_uut_w[3] = 1;
+                    32'h11:reg_key_uut_w[4] = 1;
+                    32'h12:reg_key_uut_w[5] = 1;
+                    32'h13:reg_key_uut_w[6] = 1;
+                    32'h14:reg_key_uut_w[7] = 1;
+                    32'h15:reg_key_uut_w[8] = 1;
+                    32'h16:reg_key_uut_w[9] = 1;
                     32'h17:reg_encdec_uut_o_w = 1;
                     32'h200: next_state = CHECK_SIGNATURE;
                     default:
@@ -706,29 +758,29 @@ assign debug_signal = {counter_block_o[7:0],3'h0,current_state};
                      next_state = WAIT_W_BYTE;
 
                  case(counter_bytes_o)
-                   32'h0: reg_spi_data_in = signature_data_0;
-                   32'h1: reg_spi_data_in = signature_data_1;
-                   32'h2: reg_spi_data_in = signature_data_2;
-                   32'h3: reg_spi_data_in = signature_data_3;
+                   32'h0: reg_spi_data_in = signature[31:24];
+                   32'h1: reg_spi_data_in = signature[23:16];
+                   32'h2: reg_spi_data_in = signature[15:8];
+                   32'h3: reg_spi_data_in = signature[7:0];
                    32'h4: reg_spi_data_in = reg_iteration_o;
-                   32'h5: reg_spi_data_in = block_i_0;
-                   32'h6: reg_spi_data_in = block_i_1;
-                   32'h7: reg_spi_data_in = block_i_2;
-                   32'h8: reg_spi_data_in = block_i_3;
-                   32'h9: reg_spi_data_in = block_i_4;
-                   32'hA: reg_spi_data_in = block_i_5;
-                   32'hB: reg_spi_data_in = block_i_6;
-                   32'hC: reg_spi_data_in = block_i_7;
-                   32'hD: reg_spi_data_in = key_uut_0;
-                   32'hE: reg_spi_data_in = key_uut_1;
-                   32'hF: reg_spi_data_in = key_uut_2;
-                   32'h10: reg_spi_data_in = key_uut_3;
-                   32'h11: reg_spi_data_in = key_uut_4;
-                   32'h12: reg_spi_data_in = key_uut_5;
-                   32'h13: reg_spi_data_in = key_uut_6;
-                   32'h14: reg_spi_data_in = key_uut_7;
-                   32'h15: reg_spi_data_in = key_uut_8;
-                   32'h16: reg_spi_data_in = key_uut_9;
+                   32'h5: reg_spi_data_in = block_i_uut[63:56];
+                   32'h6: reg_spi_data_in = block_i_uut[55:48];
+                   32'h7: reg_spi_data_in = block_i_uut[47:40];
+                   32'h8: reg_spi_data_in = block_i_uut[39:32];
+                   32'h9: reg_spi_data_in = block_i_uut[31:24];
+                   32'hA: reg_spi_data_in = block_i_uut[23:16];
+                   32'hB: reg_spi_data_in = block_i_uut[15:8];
+                   32'hC: reg_spi_data_in = block_i_uut[7:0];
+                   32'hD: reg_spi_data_in = key_uut[79:72];
+                   32'hE: reg_spi_data_in = key_uut[71:64];
+                   32'hF: reg_spi_data_in = key_uut[63:56];
+                   32'h10: reg_spi_data_in = key_uut[55:48];
+                   32'h11: reg_spi_data_in = key_uut[47:40];
+                   32'h12: reg_spi_data_in = key_uut[39:32];
+                   32'h13: reg_spi_data_in = key_uut[31:24];
+                   32'h14: reg_spi_data_in = key_uut[23:16];
+                   32'h15: reg_spi_data_in = key_uut[15:8];
+                   32'h16: reg_spi_data_in = key_uut[7:0];
                    32'h17: reg_spi_data_in = encdec_uut;
                    32'h18 : reg_spi_data_in = block_o_uut_o[7:0];
                    32'h19 : reg_spi_data_in = block_o_uut_o[15:8];

@@ -1,7 +1,0 @@
-CAPI=1
-[main]
-description = Spansion 128Mb SPI Flash memory model
-
-[verilog]
-src_files =
- s25fl128s.v

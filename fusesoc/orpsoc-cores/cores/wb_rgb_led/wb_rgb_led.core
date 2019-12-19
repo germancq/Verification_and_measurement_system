@@ -1,9 +1,0 @@
-CAPI=1
-[main]
-description = PWM controller for RGB LEDs
-
-[verilog]
-src_files =
- wb_rgb_led.v
- rgb_led.v
-

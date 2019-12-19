@@ -1,0 +1,73 @@
+CAPI=2:
+
+
+#changes to fusesoc & edatool to read board_part
+# edatool : edalizes/templates/vivado/vivado-project.j2
+#     - add line: set_property board_part {{tool_options.board_part}} [current_project]
+# edatool : edalize/vivado.py
+#     - add code:
+#         tool_options = {'members' : {'part' : 'String' ,
+#                                      'board_part' : 'String' }}
+#
+#         get_doc method:
+#                   return {'description' : cls._description,
+#                    'members' : [
+#                        {'name' : 'part',
+#                         'type' : 'String',
+#                         'desc' : 'FPGA part number (e.g. xc7a35tcsg324-1)'},
+#			                  {'name' : 'board_part',
+#                         'type' : 'String',
+#                         'desc' : 'board_part (e.g. digilentinc.com:genesys2:part0:1.1)'}]}
+
+
+
+
+
+name : ::spongent_hash_system:0
+description : Spongent example on Nexys4DDR
+
+
+targets :
+  synth :
+
+    toplevel  : top
+
+    filesets  :
+      - rtl_top
+      - rtl_autotest
+      - constraints
+
+    default_tool : vivado
+
+    tools:
+      vivado:
+        part : xc7a100tcsg324-1
+        
+
+filesets :
+  rtl_top :
+
+    depend :
+      - spongent_hash
+      - misc
+      - sdspi
+      - seven_segments
+
+    file_type : systemVerilogSource
+
+    files :
+      - rtl/top.sv
+      - rtl/configuration_package.sv
+
+
+  rtl_autotest :
+    file_type : verilogSource
+    files : 
+      - rtl/autotest_core/autotest_module.sv
+      - rtl/autotest_core/fsm_autotest.sv  
+      
+
+  constraints :
+    file_type : xdc
+    files :
+      - data/Nexys4DDR_Master.xdc

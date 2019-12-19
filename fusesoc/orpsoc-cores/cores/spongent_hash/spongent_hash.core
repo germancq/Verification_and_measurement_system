@@ -1,0 +1,16 @@
+CAPI=1
+[main]
+description = "spongent hash"
+
+[verilog]
+src_files =
+  systemVerilog/rtl/spongent.sv
+  systemVerilog/rtl/LFSR.sv
+  systemVerilog/rtl/counter.sv
+
+
+[provider] 
+name = github
+user = germancq
+repo = examples_cryptography
+version = 51b807825c79c87349b4d168c2c9dc64af0c11a5
