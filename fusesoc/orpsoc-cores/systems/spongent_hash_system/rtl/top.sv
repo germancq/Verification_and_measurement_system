@@ -2,7 +2,7 @@
  * @ Author: German Cano Quiveu, germancq
  * @ Create Time: 2019-12-19 13:20:38
  * @ Modified by: Your name
- * @ Modified time: 2019-12-19 19:10:38
+ * @ Modified time: 2019-12-20 19:47:30
  * @ Description:
  */
 
@@ -78,7 +78,7 @@ module top(
     display #(.N(32)) display_inst(
         .clk(sys_clk_pad_i),
         .rst(rst),
-        .div_value(32'h17),
+        .div_value(32'h12),
         .din(debug),
         .an(AN),
         .seg(seg)
