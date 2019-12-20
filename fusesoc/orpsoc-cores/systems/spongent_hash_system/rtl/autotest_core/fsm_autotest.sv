@@ -36,7 +36,7 @@
      output [31:0] debug_signal
      );
 
-assign debug_signal = {input_to_cut[15:0],index_o[7:0],3'h0,current_state};
+assign debug_signal = {output_from_CUT_o[15:0],index_o[7:0],3'h0,current_state};
 
 genvar i;
 
@@ -435,7 +435,7 @@ genvar i;
                           reg_spi_data_in = input_to_cut >> (index_o * 8); 
                    end
                    32'h5+(DATA_WIDTH>>3)+base_iter+index_o: begin
-                          reg_spi_data_in = 8'hCC;//output_from_CUT_o >> (index_o * 8);     
+                          reg_spi_data_in = output_from_CUT_o >> (index_o * 8);     
                    end
                    32'h200:;
                    32'h201:;
