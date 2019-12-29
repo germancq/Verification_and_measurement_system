@@ -24,7 +24,8 @@ def gen_all_posibilities(micro_sd):
 
 
     parameters = [
-        np.random.randint(0,2**63-1,20) #msg values
+        np.random.randint(0,2**63-1,50) #msg values
+        #range(0,50+1)
     ]
     total_posibilities = 1
     modulo_op = []
@@ -45,7 +46,8 @@ def gen_all_posibilities(micro_sd):
         micro_sd.write(SIGNATURE.to_bytes(4, byteorder='big'))
         micro_sd.write(NUMBER_ITER.to_bytes(1, byteorder='big'))
         
-        micro_sd.write(int(pairs[0]).to_bytes(8, byteorder='big'))#text
+        micro_sd.write(int(pairs[0]).to_bytes(8, byteorder='little'))#text
+        #micro_sd.write(zero.to_bytes(8, byteorder='big'))#text
 
         micro_sd.write(zero.to_bytes(4, byteorder='big'))
 

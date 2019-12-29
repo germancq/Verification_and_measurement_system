@@ -20,10 +20,10 @@ BLOCK_SIZE = 512
 NUM_BLOCK_TEST = 0x00100000 #1048576
 SIGNATURE = 0xAABBCCDD
 
-N = 88
-r = 8
-c = 80
-R = 45 
+N = 256
+r = 16
+c = 256
+R = 140 
 
 def create_fields(sheet1):
     sheet1.write(0,1,'msg')
@@ -35,7 +35,7 @@ def read_params_from_sd(block_n,micro_sd):
     micro_sd.seek(BLOCK_SIZE*block_n)
     signature = int.from_bytes(micro_sd.read(4),byteorder='big')
     n_iter = int.from_bytes(micro_sd.read(1),byteorder='big')
-    param_0 = int.from_bytes(micro_sd.read(8),byteorder='big')
+    param_0 = int.from_bytes(micro_sd.read(8),byteorder='little')
     #micro_sd.seek((BLOCK_SIZE*block_n) + RESULTS_OFFSET)
     if n_iter == 0 :
         n_iter = 1
@@ -89,7 +89,7 @@ def gen_calc(micro_sd):
         i = write_params(sheet1,params,i)
 
 
-    wb.save('results_spongent88.xls')
+    wb.save('results_spongent256.xls')
 
 def main():
     with open(sys.argv[1],"rb") as micro_sd:
