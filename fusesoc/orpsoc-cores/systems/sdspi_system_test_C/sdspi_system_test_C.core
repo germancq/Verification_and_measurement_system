@@ -1,6 +1,6 @@
 CAPI=2:
 
-name : ::sdspi_system_test:0
+name : ::sdspi_system_test_C:0
 description : sdspi system test for the Digilent Nexys 4 DDR development board
 
 
@@ -45,17 +45,18 @@ filesets :
 
     files :
       - rtl/verilog/sdspi_system/sdspi_system.v
-
-
- rtl_autotest :
-    file_type : verilogSource
-
-    files :
-      - rtl/verilog/autotest_module/autotest_module.v
-      - rtl/verilog/autotest_module/fsm_autotest.v
       - rtl/verilog/autotest_module/sdspi/sdspihost.v
       - rtl/verilog/autotest_module/sdspi/sdcmd.v
       - rtl/verilog/autotest_module/sdspi/spi_master.v
+
+
+ rtl_autotest :
+    file_type : systemVerilogSource
+
+    files :
+      - rtl/verilog/autotest_module/autotest_module.sv
+      - rtl/verilog/autotest_module/fsm_autotest.sv
+      
 
  rtl_misc :
     file_type : verilogSource

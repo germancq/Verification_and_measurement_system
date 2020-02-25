@@ -1,0 +1,75 @@
+CAPI=2:
+
+name : ::sdspi_system_test_A:0
+description : sdspi system test for the Digilent Nexys 4 DDR development board
+
+
+targets :
+ synth :
+
+   toplevel  : top
+
+   filesets  :
+     - rtl_top
+     - rtl_7_seg
+     - rtl_sdspi
+     - rtl_autotest
+     - rtl_misc
+     - constraints
+
+   default_tool : vivado
+
+   tools:
+     vivado:
+       part : xc7a100tcsg324-1
+
+filesets :
+ rtl_top :
+     file_type : verilogSource
+
+     files :
+       - rtl/verilog/top.v
+
+ rtl_7_seg :
+    file_type : verilogSource
+
+    files :
+      - rtl/verilog/7_seg/display.v
+      - rtl/verilog/7_seg/an_gen.v
+      - rtl/verilog/7_seg/dec_to_7_seg.v
+      - rtl/verilog/7_seg/div_clk_module.v
+      - rtl/verilog/7_seg/mux_8.v
+
+ rtl_sdspi :
+    file_type : verilogSource
+
+    files :
+      - rtl/verilog/sdspi_system/sdspi_system.v
+
+
+ rtl_autotest :
+    file_type : verilogSource
+
+    files :
+      - rtl/verilog/autotest_module/autotest_module.v
+      - rtl/verilog/autotest_module/fsm_autotest.v
+      - rtl/verilog/autotest_module/sdspi/sdspihost.v
+      - rtl/verilog/autotest_module/sdspi/sdcmd.v
+      - rtl/verilog/autotest_module/sdspi/spi_master.v
+
+ rtl_misc :
+    file_type : verilogSource
+
+    files :
+      - rtl/verilog/misc/contador_up.v
+      - rtl/verilog/misc/counter_load.v
+      - rtl/verilog/misc/genericMux.v
+      - rtl/verilog/misc/registro_desp.v
+      - rtl/verilog/misc/registro.v
+      - rtl/verilog/misc/memory_bank.v
+
+
+ constraints :
+   file_type : xdc
+   files :
+     - data/Nexys4DDR_Master.xdc

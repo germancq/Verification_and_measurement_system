@@ -53,7 +53,7 @@ def gen_all_posibilities(micro_sd):
         micro_sd.write(SIGNATURE.to_bytes(4, byteorder='big'))
         micro_sd.write(NUMBER_ITER.to_bytes(1, byteorder='big'))
         #for k in range(0,2+1):
-        micro_sd.write(n_blocks.to_bytes(4, byteorder='big'))
+        micro_sd.write(n_blocks.to_bytes(4, byteorder='little'))
         micro_sd.write(pairs[1].to_bytes(1, byteorder='big'))
         micro_sd.write(pairs[0].to_bytes(1, byteorder='big'))
         micro_sd.write(zero.to_bytes(4, byteorder='big'))
