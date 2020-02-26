@@ -27,6 +27,9 @@ filesets :
  rtl_top :
      file_type : verilogSource
 
+     depend : 
+       - misc
+
      files :
        - rtl/verilog/top.v
 

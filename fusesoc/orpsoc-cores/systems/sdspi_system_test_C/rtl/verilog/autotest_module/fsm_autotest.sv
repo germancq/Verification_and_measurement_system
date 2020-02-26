@@ -32,9 +32,9 @@
      output logic uut_rst,
      output logic uut_start,
      //uut paramters signals
-     output [N_BLOCK_SIZE-1:0] uut_n_blocks,
-     output [SCLK_SPEED_SIZE-1:0] uut_sclk_speed,
-     output [CMD18_SIZE-1:0] uut_cmd18,
+     output [31:0] uut_n_blocks,
+     output [4:0] uut_sclk_speed,
+     output [0:0] uut_cmd18,
      //uut results signals
      input  uut_finish,
      //debug
@@ -42,7 +42,10 @@
      );
 
 
-
+    localparam N_BLOCK_SIZE = 32;
+    localparam SCLK_SPEED_SIZE = 5;
+    localparam CMD18_SIZE = 1;
+    localparam START_BLOCK = 32'h0x100000;
 
 
 genvar i;
@@ -159,7 +162,7 @@ genvar i;
  logic up_block_counter;
  logic [31:0] counter_block_o;
  logic rst_block_counter;
- assign spi_block_addr = counter_block_o;
+ assign spi_block_addr = counter_block_o;// + 32'h0x00100000;
  counter #(.DATA_WIDTH(32)) counter_block(
     .clk(clk),
     .rst(rst_block_counter),
@@ -236,27 +239,29 @@ genvar i;
  ///////////////states/////////////////////
   logic [31:0] j;
 
- typedef enum logic[4:0] { INITIAL_CONDITION,
-                           IDLE,
-                           BEGIN_READ_FROM_SD,
-                           WAIT_RST_SPI,
-                           SEL_SD_BLOCK,
-                           WAIT_BLOCK,
-                           READ_DATA,
-                           WAIT_BYTE,
-                           READ_BYTE,
-                           CHECK_SIGNATURE,
-                           START_TEST,
-                           WAIT_UNTIL_END_TEST_OR_TIMEOUT,
-                           END_TEST,
-                           SEL_WRITE_SD_BLOCK,
-                           WAIT_W_BLOCK,
-                           WRITE_DATA,
-                           WAIT_SPI_WRITE_DATA,
-                           WAIT_W_BYTE,
-                           UPDATE_BLOCK_COUNTER,
-                           END_FSM } state_t;
- state_t current_state,next_state;
+  localparam INITIAL_CONDITION = 5'h0;
+  localparam IDLE = 5'h1;
+  localparam BEGIN_READ_FROM_SD = 5'h2;
+  localparam WAIT_RST_SPI = 5'h3;
+  localparam SEL_SD_BLOCK = 5'h4;
+  localparam WAIT_BLOCK = 5'h5;
+  localparam READ_DATA = 5'h6;
+  localparam WAIT_BYTE = 5'h7;
+  localparam READ_BYTE = 5'h8;
+  localparam CHECK_SIGNATURE = 5'h9;
+  localparam START_TEST = 5'hA;
+  localparam WAIT_UNTIL_END_TEST_OR_TIMEOUT = 5'hB;
+  localparam END_TEST = 5'hC;
+  localparam SEL_WRITE_SD_BLOCK = 5'hD;
+  localparam WAIT_W_BLOCK = 5'hE;
+  localparam WRITE_DATA = 5'hF;
+  localparam WAIT_W_BYTE = 5'h10;
+  localparam UPDATE_BLOCK_COUNTER = 5'h11;
+  localparam END_FSM = 5'h12;
+
+
+ 
+ logic[4:0] current_state,next_state;
 
  always_comb begin
      next_state = current_state;
@@ -436,7 +441,6 @@ genvar i;
              end
          CHECK_SIGNATURE:
              begin
-               uut_rst = 1;
                uut_ctrl_mux = 1;
                if(signature == 32'hAABBCCDD)
                begin
@@ -449,14 +453,14 @@ genvar i;
              begin
                uut_ctrl_mux = 1;
                uut_start = 1;
-               up_timer_counter = 1;
                next_state = WAIT_UNTIL_END_TEST_OR_TIMEOUT;
              end
           WAIT_UNTIL_END_TEST_OR_TIMEOUT:
              begin
                uut_ctrl_mux = 1;
                up_timer_counter = 1;
-               if(uut_finish)
+               uut_start = 1;
+               if(uut_finish == 1'b1)
                  next_state = END_TEST;
                else if(counter_timer_o >= 32'h6E00000)
                  next_state = END_TEST;
@@ -465,9 +469,12 @@ genvar i;
           END_TEST:
              begin
                rst_index = 1'b1;
-               rst_bytes_counter = 1;
-               if(spi_busy == 1'b0)
+               uut_ctrl_mux = 1;
+               up_bytes_counter  = 1'b1;
+               if(spi_busy == 1'b0 && counter_bytes_o > 16'hF000) begin
                    next_state = SEL_WRITE_SD_BLOCK;
+                   rst_bytes_counter = 1;
+               end    
 
 
              end
@@ -484,12 +491,15 @@ genvar i;
              end
           WRITE_DATA:
              begin
-                 spi_w_block = 1;
-                 spi_w_byte = 1;
-                 reg_spi_data_w = 1;
-
                  
-                 next_state = WAIT_SPI_WRITE_DATA;
+                 reg_spi_data_w = 1;
+                 spi_w_block = 1;
+                 
+                  
+                 spi_w_byte = 1;
+                 if(spi_busy == 1'b1) begin
+                     next_state = WAIT_W_BYTE;     
+                 end 
                  
 
                  case(counter_bytes_o)
@@ -498,32 +508,16 @@ genvar i;
                    32'h2: reg_spi_data_in = signature[15:8];
                    32'h3: reg_spi_data_in = signature[7:0];
                    32'h4: reg_spi_data_in = reg_iteration_o;
-                   32'h5 + index_o : begin
-                            reg_spi_data_in = uut_n_blocks >> (index_o * 8);
-                            up_index = 1'b1;
-                            if(index_o == (N_BLOCK_SIZE>>3)-1) begin
-                                rst_index = 1'b1;
-                            end
-                   end
-                   32'h5 + (N_BLOCK_SIZE>>3) : begin
-                            reg_spi_data_in = uut_sclk_speed;
-                   end
-                   32'h5 + (N_BLOCK_SIZE>>3) + 1 : begin
-                            reg_spi_data_in = uut_cmd18;
-                   end
-                   
-                   32'h5 + (N_BLOCK_SIZE>>3) + 2 + base_iter + index_o : begin
-                          reg_spi_data_in = counter_timer_o >> (index_o * 8);    
-                            up_index = 1'b1;
-                            if(index_o == 3) begin
-                                rst_index = 1'b1;
-                            end
-                            
-                   end
-                   
+                   32'h5 + index_o: begin
+                                reg_spi_data_in = uut_n_blocks >> (index_o * 8);
+                          end
+                   32'h9: reg_spi_data_in = uut_sclk_speed;
+                   32'hA: reg_spi_data_in = uut_cmd18;
+                   32'hC + base_iter + index_o : reg_spi_data_in = counter_timer_o >> (index_o * 8);
                    32'h200:;
                    32'h201:;
-                   32'h202:
+                   32'h202:;
+                   32'h203:
                      begin
                          next_state = UPDATE_BLOCK_COUNTER;
                          rst_bytes_counter = 1;
@@ -531,19 +525,29 @@ genvar i;
                      end
                    default: begin
                             reg_spi_data_in = memory_inst_o;
+                            rst_index = 1'b1;
                         end
                  endcase
-             end
-          WAIT_SPI_WRITE_DATA: begin
-                if(spi_busy == 1'b1) begin
-                     next_state = WAIT_W_BYTE;
-                 end    
-          end   
+             end  
           WAIT_W_BYTE:
              begin
                  spi_w_block = 1;
+                 
                  if(spi_busy == 1'b0)
                  begin
+                     up_index = 1'b1;
+                     if(counter_bytes_o == 32'h4) begin
+                        rst_index = 1'b1;
+                     end
+                     else if(counter_bytes_o == 32'h5+((N_BLOCK_SIZE>>3)-1)) begin
+                        rst_index = 1'b1;
+                     end
+                     else if(counter_bytes_o == 32'hC + base_iter - 1) begin
+                        rst_index = 1'b1;
+                     end
+                     else if(counter_bytes_o == 32'hC + base_iter + 3) begin
+                        rst_index = 1'b1;
+                     end
                      up_bytes_counter = 1;
                      next_state = WRITE_DATA;
                  end
@@ -585,6 +589,6 @@ genvar i;
 
 
 
- assign debug_signal = {counter_block_o[7:0],counter_iter_o[7:0],counter_bytes_o[7:0],3'h0,current_state};
+ assign debug_signal = {counter_block_o[7:0],counter_iter_o[7:0],base_iter[7:0],3'h0,current_state};
 
  endmodule : fsm_autotest

@@ -28,13 +28,14 @@ module autotest_module
     output uut_ctrl_mux,
     output uut_rst,
     output uut_start,
-    output [N_BLOCK_SIZE-1:0] uut_n_blocks,
-    output [SCLK_SPEED_SIZE-1:0] uut_sclk_speed,
-    output [CMD18_SIZE-1:0] uut_cmd18,
+    output [31:0] uut_n_blocks,
+    output [4:0] uut_sclk_speed,
+    output [0:0] uut_cmd18,
     input uut_finish,
 
     output [31:0] debug
   );
+  
   
   
 
@@ -52,19 +53,19 @@ module autotest_module
   logic spi_crc_err;
 
 
-  logic [CLK_INTERNAL_DIVIDER:0] counter_o;
-  counter #(.DATA_WIDTH(CLK_INTERNAL_DIVIDER+1)) div_clk_counter(
+  logic [7:0] counter_o;
+  counter #(.DATA_WIDTH(8)) div_clk_counter(
      .clk(clk),
      .rst(rst),
      .up(1'b1),
      .down(1'b0),
-     .din({ CLK_INTERNAL_DIVIDER+1 {1'b0} }),
+     .din({ 8 {1'b0} }),
      .dout(counter_o)
   );
 
   fsm_autotest fsm_isnt(
     .clk(clk),
-    .clk_counter(counter_o[CLK_INTERNAL_DIVIDER]),
+    .clk_counter(counter_o[7]),
     .rst(rst),
     //sdspihost signals
     .spi_busy(spi_busy),

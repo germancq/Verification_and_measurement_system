@@ -11,11 +11,11 @@ targets :
 
    filesets  :
      - rtl_top
+     - rtl_sdspi_sv
      - rtl_7_seg
      - rtl_sdspi
      - rtl_autotest
      - rtl_misc
-     - rtl_sdspi_sv
      - constraints
 
    default_tool : vivado
@@ -61,7 +61,7 @@ filesets :
       
 
  rtl_sdspi_sv :
-    file_type : SystemVerilogSource   
+    file_type : systemVerilogSource   
 
     files :
       - rtl/verilog/autotest_module/sdspi/sdspihost.sv
